@@ -1,0 +1,207 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\factories\\carmanufacturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:factories\\carmanufacturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\parts\\gearbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:parts\\gearbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\parts\\wheel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:parts\\wheel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\parts\\vehiclecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:parts\\vehiclecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\images\\la ferrari.jpg||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:images\\la ferrari.jpg||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\parts\\engine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:parts\\engine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\parts\\fueltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:parts\\fueltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|c:\\users\\dell\\onedrive\\documents\\tgu\\year 3\\key 2\\ooap 2\\ooap2 labs\\lab 1 -  abstract factory\\carmaker - no abstract\\service\\reportingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F975FFB-E038-458E-8361-D0DA539F4A5F}|CarMaker.csproj|solutionrelative:service\\reportingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAArwCsAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T20:34:18.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Wheel.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\Wheel.cs",
+              "RelativeDocumentMoniker": "Parts\\Wheel.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\Wheel.cs",
+              "RelativeToolTip": "Parts\\Wheel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T20:34:12.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VehicleComponent.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\VehicleComponent.cs",
+              "RelativeDocumentMoniker": "Parts\\VehicleComponent.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\VehicleComponent.cs",
+              "RelativeToolTip": "Parts\\VehicleComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T20:34:11.186Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-05T20:34:08.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CarManufacturer.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Factories\\CarManufacturer.cs",
+              "RelativeDocumentMoniker": "Factories\\CarManufacturer.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Factories\\CarManufacturer.cs",
+              "RelativeToolTip": "Factories\\CarManufacturer.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAcwCcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T20:33:15.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "La Ferrari.jpg",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Images\\La Ferrari.jpg",
+              "RelativeDocumentMoniker": "Images\\La Ferrari.jpg",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Images\\La Ferrari.jpg",
+              "RelativeToolTip": "Images\\La Ferrari.jpg",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-03-05T20:20:27.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Gearbox.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\Gearbox.cs",
+              "RelativeDocumentMoniker": "Parts\\Gearbox.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\Gearbox.cs",
+              "RelativeToolTip": "Parts\\Gearbox.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T11:40:58.163Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Engine.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\Engine.cs",
+              "RelativeDocumentMoniker": "Parts\\Engine.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\Engine.cs",
+              "RelativeToolTip": "Parts\\Engine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T18:45:17.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ReportingService.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Service\\ReportingService.cs",
+              "RelativeDocumentMoniker": "Service\\ReportingService.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Service\\ReportingService.cs",
+              "RelativeToolTip": "Service\\ReportingService.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAQwEcAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T18:21:41.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\AssemblyInfo.cs",
+              "RelativeToolTip": "AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T03:28:32.257Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FuelType.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\FuelType.cs",
+              "RelativeDocumentMoniker": "Parts\\FuelType.cs",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker - No Abstract\\Parts\\FuelType.cs",
+              "RelativeToolTip": "Parts\\FuelType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T16:49:57.701Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

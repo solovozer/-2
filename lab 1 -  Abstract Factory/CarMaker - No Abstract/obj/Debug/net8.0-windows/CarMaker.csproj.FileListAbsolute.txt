@@ -1,0 +1,64 @@
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CarMaker.exe
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CarMaker.deps.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CarMaker.runtimeconfig.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CarMaker.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CarMaker.pdb
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CommunityToolkit.Common.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CommunityToolkit.Diagnostics.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\HelixToolkit.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\HelixToolkit.Geometry.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\HelixToolkit.Maths.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\HelixToolkit.Wpf.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.csproj.AssemblyReference.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker_MarkupCompile.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker_MarkupCompile.lref
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.g.resources
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.AssemblyInfoInputs.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.AssemblyInfo.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.csproj.CoreCompileInputs.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.sourcelink.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.csproj.Up2Date
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\refint\CarMaker.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.pdb
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\CarMaker.genruntimeconfig.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker\obj\Debug\net8.0-windows\ref\CarMaker.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CarMaker.exe
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CarMaker.deps.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CarMaker.runtimeconfig.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CarMaker.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CarMaker.pdb
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CommunityToolkit.Common.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CommunityToolkit.Diagnostics.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\HelixToolkit.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\HelixToolkit.Geometry.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\HelixToolkit.Maths.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\HelixToolkit.Wpf.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.csproj.AssemblyReference.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker_MarkupCompile.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker_MarkupCompile.lref
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.g.resources
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.AssemblyInfoInputs.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.AssemblyInfo.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.csproj.CoreCompileInputs.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.sourcelink.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.csproj.Up2Date
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\refint\CarMaker.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.pdb
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\CarMaker.genruntimeconfig.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\OOAP2 LABS\lab 1 -  Abstract Factory\CarMaker - No Abstract\obj\Debug\net8.0-windows\ref\CarMaker.dll

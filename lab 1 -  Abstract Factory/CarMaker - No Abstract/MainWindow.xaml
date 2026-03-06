@@ -1,0 +1,57 @@
+﻿<Window x:Class="CarMaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helix="http://helix-toolkit.org/wpf"
+        xmlns:local="clr-namespace:CarMaker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10" Height="500" Width="750">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <TextBlock Text="Car Maker 1.0" FontSize="36" FontWeight="Bold" Foreground="#2D2D2D"/>
+            <TextBlock FontSize="18" Text="Factory selection:"/>
+            <ComboBox x:Name="BrandSelector" SelectedIndex="0">
+                <ComboBoxItem Content="Honda"/>
+                <ComboBoxItem Content="Ferrari"/>
+                <ComboBoxItem Content="Lada"/>
+            </ComboBox>
+            <Button Content="Assemble Car" Click="MakeCar" Margin="0,10,0,0"/>
+            <TextBlock x:Name="StatusText" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Background="#F4F4F4" VerticalAlignment="Stretch">
+            <TextBlock x:Name="ModelDisplayName" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+            <Image x:Name="CarPhoto" Height="150" Stretch="Uniform" Margin="5"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" x:Name="HistoryGrid" 
+              AutoGenerateColumns="False" IsReadOnly="True" Margin="0,20,0,0" VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Created" Binding="{Binding CreationTime, StringFormat=\{0:HH:mm:ss\}}" Width="80"/>
+                <DataGridTextColumn Header="Model" Binding="{Binding Car.Model}" Width="*"/>
+                <DataGridTextColumn Header="Engine" Binding="{Binding Car.Engine.Model}" Width="*"/>
+                <DataGridTextColumn Header="Gearbox" Binding="{Binding Car.Gearbox.Model}" Width="*"/>
+                <DataGridTextColumn Header="Wheel" Binding="{Binding Car.Wheel.TireBrand}" Width="*"/>
+                <DataGridTemplateColumn Header="Report" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center">
+                            <Hyperlink Click="OpenReport">View</Hyperlink>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
