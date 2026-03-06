@@ -3621,11 +3621,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker\\CarMaker.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 1 -  Abstract Factory\\CarMaker\\CarMaker.csproj",
       "projectName": "CarMaker",
-      "projectPath": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker\\CarMaker.csproj",
+      "projectPath": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 1 -  Abstract Factory\\CarMaker\\CarMaker.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\OOAP2 LABS\\lab 1 -  Abstract Factory\\CarMaker\\obj\\",
+      "outputPath": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 1 -  Abstract Factory\\CarMaker\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
