@@ -1,0 +1,66 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\Stronger than you\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2A331F69-496C-441A-A3FE-0CBDEA430977}|Stronger than you.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\Stronger than you\\Stronger than you.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2A331F69-496C-441A-A3FE-0CBDEA430977}|Stronger than you.vcxproj|solutionrelative:Stronger than you.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A331F69-496C-441A-A3FE-0CBDEA430977}|Stronger than you.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\Stronger than you\\maze.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2A331F69-496C-441A-A3FE-0CBDEA430977}|Stronger than you.vcxproj|solutionrelative:maze.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "maze.txt",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\Stronger than you\\maze.txt",
+              "RelativeDocumentMoniker": "maze.txt",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\Stronger than you\\maze.txt",
+              "RelativeToolTip": "maze.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-03-07T15:38:36.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Stronger than you.cpp",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\Stronger than you\\Stronger than you.cpp",
+              "RelativeDocumentMoniker": "Stronger than you.cpp",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\Stronger than you\\Stronger than you.cpp",
+              "RelativeToolTip": "Stronger than you.cpp",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAkwIIAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-07T08:02:38.597Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|solutionrelative:test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|solutionrelative:test.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|solutionrelative:test.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\small.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|solutionrelative:small.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\Resource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|solutionrelative:Resource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\targetver.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|solutionrelative:targetver.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28BD4A53-28F1-4651-9949-182662A2911B}|test.vcxproj|solutionrelative:framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "test.ico -  [English (United States)] - Icon [256x256, 32 bit, PNG]",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.ico",
+              "RelativeDocumentMoniker": "test.ico",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.ico -  [English (United States)] - Icon [256x256, 32 bit, PNG]",
+              "RelativeToolTip": "test.ico -  [English (United States)] - Icon [256x256, 32 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001525|",
+              "WhenOpened": "2026-03-07T09:10:33.911Z",
+              "EditorCaption": " -  [English (United States)] - Icon [256x256, 32 bit, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "small.ico -  [English (United States)] - Icon [256x256, 32 bit, PNG]",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\small.ico",
+              "RelativeDocumentMoniker": "small.ico",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\small.ico -  [English (United States)] - Icon [256x256, 32 bit, PNG]",
+              "RelativeToolTip": "small.ico -  [English (United States)] - Icon [256x256, 32 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001525|",
+              "WhenOpened": "2026-03-07T09:10:14.72Z",
+              "EditorCaption": " -  [English (United States)] - Icon [256x256, 32 bit, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "framework.h",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\framework.h",
+              "RelativeDocumentMoniker": "framework.h",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\framework.h",
+              "RelativeToolTip": "framework.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-07T09:09:18.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Resource.h",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\Resource.h",
+              "RelativeDocumentMoniker": "Resource.h",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\Resource.h",
+              "RelativeToolTip": "Resource.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-07T09:09:14.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "targetver.h",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\targetver.h",
+              "RelativeDocumentMoniker": "targetver.h",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\targetver.h",
+              "RelativeToolTip": "targetver.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-07T09:09:11.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "test.h",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.h",
+              "RelativeDocumentMoniker": "test.h",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.h",
+              "RelativeToolTip": "test.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-07T09:09:10.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "test.cpp",
+              "DocumentMoniker": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.cpp",
+              "RelativeDocumentMoniker": "test.cpp",
+              "ToolTip": "C:\\Users\\Dell\\OneDrive\\Documents\\TGU\\Year 3\\Key 2\\OOAP 2\\-2\\lab 2 - Flyweight\\test\\test.cpp",
+              "RelativeToolTip": "test.cpp",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAFUAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-07T09:08:33.749Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+﻿  Stronger than you.cpp
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(10,15): warning C4091: 'static ': ignored on left of 'Direction' when no variable is declared
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(36,11): error C3646: 'board': unknown override specifier
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(36,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(38,33): error C2061: syntax error: identifier 'Board'
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(38,62): error C2065: 'b': undeclared identifier
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(38,56): error C2614: 'PlayerController': illegal member initialization: 'board' is not a base or member
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(41,27): error C2065: 'board': undeclared identifier
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(41,45): error C3490: 'x' cannot be modified because it is being accessed through a const object
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(42,27): error C2065: 'board': undeclared identifier
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(42,45): error C3490: 'y' cannot be modified because it is being accessed through a const object
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(124,24): error C2661: 'PlayerController::PlayerController': no overloaded function takes 2 arguments
+      C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\-2\lab 2 - Flyweight\Stronger than you\Stronger than you.cpp(124,24):
+      while trying to match the argument list '(Player, Board)'
+  

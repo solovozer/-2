@@ -11,7 +11,7 @@ namespace Undertale.Attacks
          
     }
 
-    public class Bone : Attacks
+    internal class Bone : Attacks
     {
         private int width;
         private int height;

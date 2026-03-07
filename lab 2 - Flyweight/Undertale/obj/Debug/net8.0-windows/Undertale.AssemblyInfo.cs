@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Undertale")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5fc915876ce4fc1fe8b4bc159b20e607c9a8d8e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Undertale")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Undertale")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
