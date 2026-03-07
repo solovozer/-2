@@ -4,10 +4,10 @@
 #include <map>
 #include <string>
 #include <cmath>
+#include "MazeGenerator.h"
 
 using namespace std;
 
-// simple value type for directions
 struct Direction {
     int dx;
     int dy;
@@ -125,34 +125,62 @@ public:
     }
 };
 
-const static vector<pair<int, int>> readWallFile(string filename) {
-    vector<pair<int, int>> walls;
+struct TileInfo {
+    int x;
+    int y;
+    char symbol;
+};
+
+const static vector<TileInfo> readMazeFile(const string &filename) {
+    vector<TileInfo> tiles;
     ifstream file(filename);
     if (file) {
         int x, y;
-        while (file >> x >> y) walls.emplace_back(make_pair(x, y));
+        char sym;
+        // file format: x y symbol  (symbol could be '#', 'S', 'E', etc.)
+        while (file >> x >> y >> sym) {
+            tiles.push_back({x, y, sym});
+        }
     }
-    return walls;
+    return tiles;
 }
 
 int main() {
-    const vector<pair<int ,int>> walls = readWallFile("maze.txt");
+    // read a more generic maze file, allowing walls (#), start (S), end (E), etc.
+    const vector<TileInfo> tiles = readMazeFile("maze.txt");
     Player player;
     Board board(100, 100);
     Artist artist(board);
-    for (const auto& w : walls) {
-        artist.drawWall(w.first, w.second);
+
+    for (const auto &t : tiles) {
+        switch (t.symbol) {
+        case '#':
+            artist.drawWall(t.x, t.y);
+            break;
+        case 'S':
+            player.setPosition(t.x, t.y);
+            board.setTile(t.x, t.y, TileFactory::getTile('S'));
+            break;
+        case 'E':
+            board.setTile(t.x, t.y, TileFactory::getTile('E'));
+            break;
+        default:
+            board.setTile(t.x, t.y, TileFactory::getTile(t.symbol));
+            break;
+        }
     }
+
     PlayerController pc(player, board);
 
-    string user_input= "";
+    string user_input = "";
     while (user_input != "q") {
         cin >> user_input;
         if (user_input == "l") pc.Move(Direction::Left());
         else if (user_input == "r") pc.Move(Direction::Right());
         else if (user_input == "u") pc.Move(Direction::Up());
         else if (user_input == "d") pc.Move(Direction::Down());
-        else cout << "Unknown key, try again" << endl;
+        else
+            cout << "Unknown key, try again" << endl;
 
         cout << artist.display(player) << endl;
     }
