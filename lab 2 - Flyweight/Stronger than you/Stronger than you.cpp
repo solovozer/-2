@@ -3,18 +3,17 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 
-static struct Direction {
+// simple value type for directions
+struct Direction {
+    int dx;
+    int dy;
 private:
-    Direction(int a, int b) {
-        dx = a < 0 ? -1 : a > 0;
-        dy = b < 0 ? -1 : b > 0;
-    }
+    Direction(int a, int b) : dx(a < 0 ? -1 : a > 0), dy(b < 0 ? -1 : b > 0) {}
 public:
-    int dx, dy;
     static Direction Left() { return Direction(-1, 0); }
     static Direction Right() { return Direction(1, 0); }
     static Direction Up() { return Direction(0, -1); }
@@ -22,28 +21,19 @@ public:
 };
 
 class Player {
+private:
     int x;
     int y;
-
-    friend class PlayerController;
-    friend class Artist;
 public:
     Player() : x(0), y(0) {}
-};
 
-class PlayerController {
-    Player player;
-    Board board;
-public:
-    PlayerController(Player& p, Board& b) : player(p), board(b) {}
-    void Move(Direction dir) const{
-        int x = player.x + dir.dx, y = player.y + dir.dy;
-        if (x >= 0 && x < board.cols) player.x = x;
-        if (y >= 0 && y < board.rows) player.y = y;
-    }
+    int getX() const { return x; }
+    int getY() const { return y; }
+    void setPosition(int newX, int newY) { x = newX; y = newY; }
 };
 
 class Tile {
+private:
     char symbol;
 public:
     Tile(char s) : symbol(s) {}
@@ -54,51 +44,83 @@ class TileFactory {
     static map<char, Tile*> tiles;
 public:
     static Tile* getTile(char symbol) {
-        if (!tiles[symbol]) {
-            tiles[symbol] = new Tile(symbol);
+        auto it = tiles.find(symbol);
+        if (it == tiles.end()) {
+            Tile* t = new Tile(symbol);
+            tiles[symbol] = t;
+            return t;
         }
-        return tiles[symbol];
+        return it->second;
     }
 };
 
 map<char, Tile*> TileFactory::tiles;
 
 class Board {
+private:
     int rows, cols;
     vector<vector<Tile*>> grid;
-
-    friend class PlayerController;
-    friend class Artist;
 public:
     Board(int m, int n) : rows(m), cols(n), grid(m, vector<Tile*>(n, TileFactory::getTile('.'))) {}
+
+    int getRows() const { return rows; }
+    int getCols() const { return cols; }
+    Tile* getTile(int x, int y) const {
+        if (x >= 0 && x < cols && y >= 0 && y < rows)
+            return grid[y][x];
+        return nullptr;
+    }
+    void setTile(int x, int y, Tile* t) {
+        if (x >= 0 && x < cols && y >= 0 && y < rows)
+            grid[y][x] = t;
+    }
 };
 
-class Artist {
+class PlayerController {
+private:
+    Player& player;
     Board& board;
-    
+public:
+    PlayerController(Player& p, Board& b) : player(p), board(b) {}
+
+    void Move(Direction dir) {
+        int currentX = player.getX();
+        int currentY = player.getY();
+        int x = currentX + dir.dx;
+        int y = currentY + dir.dy;
+        if (x >= 0 && x < board.getCols())
+            currentX = x;
+        if (y >= 0 && y < board.getRows())
+            currentY = y;
+        player.setPosition(currentX, currentY);
+    }
+};
+
+
+class Artist {
+private:
+    Board& board;
 public:
     Artist(Board& b) : board(b) {}
     void drawWall(int x, int y) {
-        if (x >= 0 && x < board.cols && y >= 0 && y < board.rows) {
-            board.grid[y][x] = TileFactory::getTile('#');
-        }
+        board.setTile(x, y, TileFactory::getTile('#'));
     }
     string display(const Player& player)
     {
         string buffer;
-
-        for (int y = 0; y < board.rows; y++)
+        for (int y = 0; y < board.getRows(); y++)
         {
-            for (int x = 0; x < board.cols; x++)
+            for (int x = 0; x < board.getCols(); x++)
             {
-                if (x == player.x && y == player.y)
+                if (x == player.getX() && y == player.getY())
                     buffer += '@';
-                else
-                    buffer += board.grid[y][x]->getSymbol();
+                else {
+                    Tile* t = board.getTile(x, y);
+                    buffer += (t ? t->getSymbol() : '?');
+                }
             }
             buffer += '\n';
         }
-
         return buffer;
     }
 };
