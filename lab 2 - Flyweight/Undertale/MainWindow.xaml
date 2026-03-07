@@ -7,20 +7,30 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="Black">
-        <StackPanel x:Name="SansContainer" Background="Blue" Width="100" Height="150" Margin="350,0,350,260"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
 
-        <Border BorderBrush="White" BorderThickness="5" Background="Black" Width="700" Height="120" Margin="50,150,50,90" Padding="10">
+        <StackPanel x:Name="SansContainer" Background="Blue" Width="100" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+
+        <Border BorderBrush="White" BorderThickness="5" Background="Black" Width="700" HorizontalAlignment="Center" Grid.Row="1" Padding="10">
             <StackPanel x:Name="DialogueBox">
                 <TextBlock x:Name="Dialogue" FontSize="20" Text="* This is Lorem Ipsum" Foreground="White" FontFamily="Comic Sans MS" Padding="10"/>
             </StackPanel>
         </Border>
-        <StackPanel x:Name="Info" Height="30" Margin="50,310,50,84" Background="Yellow"/>
-        <StackPanel x:Name="ButtonGrid" VerticalAlignment="Bottom" Width="700" Height="70"  Margin="50,0,50,10">
+
+        <StackPanel x:Name="Info" Width="700" HorizontalAlignment="Center" Grid.Row="2" Background="Yellow"/>
+
+        <StackPanel x:Name="ButtonGrid" Grid.Row="4" Width="700" HorizontalAlignment="Center">
             <UniformGrid Rows="1" Columns="4" Height="60" Margin="-5">
-                <Button FontSize="30" Padding="-3" Content="FIGHT" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
-                <Button FontSize="30" Padding="-3" Content="ACT" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
-                <Button FontSize="30" Padding="-3" Content="ITEM" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
-                <Button FontSize="30" Padding="-3" Content="MERCY" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
+                <Button FontSize="30" Content="FIGHT" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
+                <Button FontSize="30" Content="ACT" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
+                <Button FontSize="30" Content="ITEM" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
+                <Button FontSize="30" Content="MERCY" Background="Black" Foreground="Orange" BorderBrush="Orange" BorderThickness="7" Margin="5"/>
             </UniformGrid>
         </StackPanel>
     </Grid>
