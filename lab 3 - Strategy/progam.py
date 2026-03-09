@@ -21,15 +21,18 @@ class PackagingApp:
         self.stuff_frame.grid(row=0, column=1, rowspan=2, sticky="nsew", padx=10, pady=10)
         tk.Label(self.stuff_frame, text="<< Package Info >>", font=("Arial", 12)).pack(pady=20)
         
-        k.Label(root, text="Distance:").grid(row=0, column=0, padx=10, sticky="e")
-        dist_var = tk.DoubleVar()
-        dist_scale = tk.Scale(root, from_=0, to=500, orient="horizontal", variable=dist_var, length=200)
-        dist_scale.grid(row=0, column=1, padx=10, pady=5)
+        tk.Label(self.stuff_frame, text="Distance:").pack(pady=5)
+        self.dist_var = tk.DoubleVar()
+        self.dist_scale = tk.Scale(self.stuff_frame, from_=0, to=500, orient="horizontal", variable=self.dist_var, length=200)
+        self.dist_scale.pack(pady=5)
 
-        tk.Label(root, text="Weight:").grid(row=1, column=0, padx=10, sticky="e")
-        weight_var = tk.DoubleVar()
-        weight_scale = tk.Scale(root, from_=0, to=100, orient="horizontal", variable=weight_var, length=200)
-        weight_scale.grid(row=1, column=1, padx=10, pady=5)
+        tk.Label(self.stuff_frame, text="Weight:").pack(pady=5)
+        self.weight_var = tk.DoubleVar()
+        self.weight_scale = tk.Scale(self.stuff_frame, from_=0, to=100, orient="horizontal", variable=self.weight_var, length=200)
+        self.weight_scale.pack(pady=5)
+
+        self.dist_scale.bind("<Motion>", self.update_package)
+        self.weight_scale.bind("<Motion>", self.update_package)
 
         self.root.update()
         self.draw_package()
@@ -38,7 +41,8 @@ class PackagingApp:
         self.draw_package()
 
     def draw_package(self): 
-        k.draw_refined_package(self.canvas, self.scale_var.get())
+        scale = self.weight_scale.get() / 10.0  # Adjust scale based on weight
+        k.draw_refined_package(self.canvas, scale)
 
 if __name__ == "__main__":
     root = tk.Tk()
