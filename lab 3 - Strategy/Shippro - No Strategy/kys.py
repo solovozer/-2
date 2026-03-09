@@ -4,10 +4,10 @@ def draw_refined_package(canvas, scale):
     canvas.delete("all") 
     cx = canvas.winfo_width() / 2
     cy = canvas.winfo_height() / 2
-    O = np.array([cx, cy + (50 * scale)])
     PI = np.pi
-    r_scale = (scale + 1) / 2 
-    width, length, height = 120 * scale, 180 * scale, 150 * scale
+    r_scale = (scale + 10) / 11 
+    O = np.array([cx, cy + (50 * r_scale)])
+    width, length, height = 120 * r_scale, 180 * r_scale, 150 * r_scale
     l = np.array([-np.cos(PI/6), np.sin(PI/6)])
     r = np.array([np.cos(PI/6), np.sin(PI/6)])
     u = np.array([0, -1])
@@ -32,4 +32,4 @@ def draw_refined_package(canvas, scale):
     canvas.create_polygon(to_pts(top_center, top_left, top_front, top_right), fill=c_top, outline="black")
 
     text_pos = (top_left + bottom_front) / 2
-    canvas.create_text(text_pos[0], text_pos[1], text="PACKAGE", angle=30, font=("Arial", int(12*scale), "bold"), fill="#333333")
+    canvas.create_text(text_pos[0], text_pos[1], text="PACKAGE", angle=30, font=("Arial", int(12*r_scale), "bold"), fill="#333333")

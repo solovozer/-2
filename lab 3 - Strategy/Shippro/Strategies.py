@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import random
+
 
 class ShippingInfo:
     def __init__(self, distance, weight):
@@ -16,8 +16,7 @@ class PochtaRuStrategies(Strategies):
     def implement_strategies(self, info: ShippingInfo):
         base = 150
         rate = 30 if info.distance < 600 else 50
-        weight_units = (info.weight * 2)
-        return (base + (weight_units * rate)) * 1.01
+        return (base + (info.weight * rate)) * 1.01
 
 class CDEKStrategies(Strategies):
     def __init__(self): super().__init__("cdek.ru")
@@ -30,9 +29,13 @@ class CDEKStrategies(Strategies):
         return (base * multiplier) * 1.008
 
 class YandexStrategies(Strategies):
-    def __init__(self): super().__init__("Yandex.ru")
+    def __init__(self): 
+        super().__init__("Yandex.ru")
     def implement_strategies(self, info: ShippingInfo):
         base = 150
         km_rate = 25
-        surge = surge = random.gauss(1.2, 0.1)
-        return (base + (info.distance * km_rate)) * surge
+        w = (info.weight * info.weight / 50)  
+        return (base + (info.distance * km_rate)) + w
+    
+
+
