@@ -1,24 +1,10 @@
 #include "Game.h"
 #include <cstdlib>
 #include <ctime>
+#include <conio.h>
+#include <windows.h>
+#include <psapi.h>
 
-#ifdef _WIN32
-    #include <conio.h>
-#else
-    #include <termios.h>
-    #include <unistd.h>
-    char _getch() {
-        struct termios oldt, newt;
-        char ch;
-        tcgetattr(STDIN_FILENO, &oldt);
-        newt = oldt;
-        newt.c_lflag &= ~(ICANON | ECHO);
-        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-        ch = getchar();
-        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-        return ch;
-    }
-#endif
 
 // Global tile settings instance
 TilesSettings tilesSettings;
@@ -32,9 +18,21 @@ enum class GameState {
     QUIT
 };
 
+uintptr_t stack_base;
+
+void print_total_memory() {
+    PROCESS_MEMORY_COUNTERS_EX pmc;
+    if (GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
+        size_t physMemUsedByMe = pmc.WorkingSetSize;
+        size_t virtualMemUsedByMe = pmc.PrivateUsage;
+
+        std::cout << "Physical RAM: " << physMemUsedByMe / (1024.0 * 1024.0) << " MB" << std::endl;
+        std::cout << "Virtual Mem:  " << virtualMemUsedByMe / (1024.0 * 1024.0) << " MB" << std::endl;
+    }
+}
+
 int main() {
     srand(static_cast<unsigned int>(time(0)));
-    
     Game game;
     GameState state = GameState::START_MENU;
 
@@ -42,15 +40,19 @@ int main() {
         if (state == GameState::START_MENU) {
             Screen screen;
             screen.showStartScreen();
+            if (game.getDifficulty() == Difficulty::HELL) cout << Colors::RED << "Welcome to hell :)" << Colors::RESET << endl;
             char user_input = _getch();
 
             if (user_input == 'h' || user_input == 'H') {
                 state = GameState::DIFFICULTY_MENU;
-            } else if (user_input == 'k' || user_input == 'K') {
+            }
+            else if (user_input == 'k' || user_input == 'K') {
                 state = GameState::SETTINGS_MENU;
-            } else if (user_input == 'q' || user_input == 'Q') {
+            }
+            else if (user_input == 'q' || user_input == 'Q') {
                 state = GameState::QUIT;
-            } else {
+            }
+            else {
                 // Start the game
                 game.initialize();
                 game.run();
@@ -64,13 +66,31 @@ int main() {
             if (user_input == '1') {
                 game.setDifficulty(Difficulty::EASY);
                 state = GameState::START_MENU;
-            } else if (user_input == '2') {
+            }
+            else if (user_input == '2') {
                 game.setDifficulty(Difficulty::MEDIUM);
                 state = GameState::START_MENU;
-            } else if (user_input == '3') {
+            }
+            else if (user_input == '3') {
                 game.setDifficulty(Difficulty::HARD);
                 state = GameState::START_MENU;
-            } else if (user_input == 'b' || user_input == 'B') {
+            }
+            
+            else if (toupper(user_input) == 'I')
+                    if (toupper(_getch()) == 'M')
+                        if (toupper(_getch()) == 'M')
+                            if (toupper(_getch()) == 'O')
+                                if (toupper(_getch()) == 'R')
+                                    if (toupper(_getch()) == 'T')
+                                        if (toupper(_getch()) == 'A')
+                                            if (toupper(_getch()) == 'L')
+                                                if (toupper(_getch()) == 'I')
+                                                    if (toupper(_getch()) == 'T')
+                                                        if (toupper(_getch()) == 'Y') {
+                                                            game.setDifficulty(Difficulty::HELL);
+                                                            state = GameState::START_MENU;
+                                                        }
+            else if (user_input == 'b' || user_input == 'B') {
                 state = GameState::START_MENU;
             }
         }
@@ -83,27 +103,32 @@ int main() {
                 char symbol = _getch();
                 tilesSettings.Setting(TilesType::PathTile, symbol);
                 TileFactory::clearCache();
-            } else if (user_input == '2') {
+            }
+            else if (user_input == '2') {
                 std::cout << Colors::CYAN << "\nEnter new symbol for Player: " << Colors::RESET;
                 char symbol = _getch();
                 tilesSettings.Setting(TilesType::PlayerTile, symbol);
                 TileFactory::clearCache();
-            } else if (user_input == '3') {
+            }
+            else if (user_input == '3') {
                 std::cout << Colors::CYAN << "\nEnter new symbol for Start: " << Colors::RESET;
                 char symbol = _getch();
                 tilesSettings.Setting(TilesType::StartTile, symbol);
                 TileFactory::clearCache();
-            } else if (user_input == '4') {
+            }
+            else if (user_input == '4') {
                 std::cout << Colors::CYAN << "\nEnter new symbol for End: " << Colors::RESET;
                 char symbol = _getch();
                 tilesSettings.Setting(TilesType::EndTile, symbol);
                 TileFactory::clearCache();
-            } else if (user_input == '5') {
+            }
+            else if (user_input == '5') {
                 std::cout << Colors::CYAN << "\nEnter new symbol for Wall: " << Colors::RESET;
                 char symbol = _getch();
                 tilesSettings.Setting(TilesType::WallTile, symbol);
                 TileFactory::clearCache();
-            } else if (user_input == 'b' || user_input == 'B') {
+            }
+            else if (user_input == 'b' || user_input == 'B') {
                 state = GameState::START_MENU;
             }
         }
@@ -114,7 +139,7 @@ int main() {
                     game.update();
                 }
                 char user_input = _getch();
-                
+
                 if (user_input == 'q' || user_input == 'Q') {
                     state = GameState::QUIT;
                 }
@@ -142,9 +167,13 @@ int main() {
         else if (state == GameState::VICTORY) {
             // Game is won, waiting for restart or quit
             char user_input = _getch();
-            
+
             if (user_input == 'q' || user_input == 'Q') {
                 state = GameState::QUIT;
+            }
+            else if (user_input == 'b' || user_input == 'B') {
+                game.reset();
+                state = GameState::START_MENU;
             }
             else if (user_input == 'r' || user_input == 'R') {
                 game.reset();
@@ -152,9 +181,10 @@ int main() {
                 state = GameState::PLAYING;
             }
         }
+        print_total_memory();
     }
-    
+
     game.cleanup();
-    
+
     return 0;
 }

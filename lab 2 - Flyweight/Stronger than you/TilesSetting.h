@@ -14,7 +14,7 @@ struct Colors {
 enum TilesType : short {
 	PathTile, PlayerTile, StartTile, EndTile, WallTile, DarknessTile, VoidTile, UnknownTile
 };
-const char DEFAULT_SETTINGS[8] = { '.', '@', 'S', 'E', '#', '~', ' ', '?' };
+const char DEFAULT_SETTINGS[8] = { '.', '@', 'S', 'E', '#', '~', '?', '?' };
 
 struct TilesSettings {
 	char settings[8];
@@ -32,11 +32,10 @@ struct TilesSettings {
 	void Setting(TilesType tt, char new_symbol) {
 		settings[tt] = new_symbol;
 	}
-}; 
+};
 
 
 
 enum TilesColor : short {
 	Red, Yellow, Orange, Green, Blue, Indigo, Purple
 };
-

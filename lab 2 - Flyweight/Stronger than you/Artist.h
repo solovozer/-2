@@ -17,17 +17,17 @@ public:
         for (const auto& d : tiles) {
             switch (d.type) {
             case TilesType::WallTile:
-                board.setTile(d.x, d.y, TileFactory::getTile(TilesType::WallTile)); 
+                board.setTile(d.x, d.y, TilesType::WallTile); 
                 break;
             case TilesType::StartTile:
                 player.setPosition(d.x, d.y);
-                board.setTile(d.x, d.y, TileFactory::getTile(TilesType::StartTile));
+                board.setTile(d.x, d.y, TilesType::StartTile);
                 break;
             case TilesType::EndTile:
-                board.setTile(d.x, d.y, TileFactory::getTile(TilesType::EndTile));
+                board.setTile(d.x, d.y, TilesType::EndTile);
                 break;
             default:
-                board.setTile(d.x, d.y, TileFactory::getTile(TilesType::UnknownTile));
+                board.setTile(d.x, d.y, TilesType::UnknownTile);
                 break;
             }
         }

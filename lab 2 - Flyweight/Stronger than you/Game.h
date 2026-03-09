@@ -13,7 +13,8 @@
 enum class Difficulty {
     EASY = 10,
     MEDIUM = 30,
-    HARD = 50
+    HARD = 50,
+    HELL = 2000
 };
 
 class Game {
@@ -30,18 +31,19 @@ private:
     Difficulty difficulty;
 
 public:
-    Game() 
-        : difficulty(Difficulty::EASY), boardSize(static_cast<int>(Difficulty::EASY)), 
-          board(boardSize, boardSize), artist(board, player), controller(player, board),
-          isGameRunning(false), hasWon(false) {
+    Game()
+        : difficulty(Difficulty::EASY), boardSize(static_cast<int>(Difficulty::EASY)),
+        board(boardSize, boardSize), artist(board, player), controller(player, board),
+        isGameRunning(false), hasWon(false) {
     }
 
     std::string getMazeFileForDifficulty(Difficulty diff) const {
         switch (diff) {
-            case Difficulty::EASY:   return "maze_easy.txt";
-            case Difficulty::MEDIUM: return "maze_medium.txt";
-            case Difficulty::HARD:   return "maze_hard.txt";
-            default:                 return "maze_hard.txt";
+        case Difficulty::EASY:   return "mazes/maze_easy.txt";
+        case Difficulty::MEDIUM: return "mazes/maze_medium.txt";
+        case Difficulty::HARD:   return "mazes/maze_hard.txt";
+        case Difficulty::HELL:   return "mazes/maze_hell.txt";
+        default:                 return "mazes/maze_hard.txt";
         }
     }
 
@@ -60,7 +62,7 @@ public:
 
     void update() {
         screen.moveCursorToTop();
-        screen.displayGameFrame(artist.displayVicinity(2));
+        screen.displayGameFrame(artist.displayVicinity(4));
     }
 
     void showVictoryScreen() {
@@ -81,6 +83,7 @@ public:
         hasWon = false;
         isGameRunning = true;
     }
+
 
     int getPlayerX() const { return player.getX(); }
     int getPlayerY() const { return player.getY(); }
@@ -119,4 +122,3 @@ public:
         return controller;
     }
 };
-

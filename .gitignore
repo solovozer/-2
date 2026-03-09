@@ -1,0 +1,9 @@
+.vs/
+*.ipch
+*.sdf
+*.suo
+
+
+__pycache__/
+__pycache__/
+.venv/

@@ -113,6 +113,7 @@ public:
         printPaddedLine("");
         printPaddedLine(Colors::YELLOW + std::string("[R]") + Colors::RESET + " Play Again");
         printPaddedLine(Colors::RED + std::string("[Q]") + Colors::RESET + " Quit Game");
+        printPaddedLine(Colors::MAGENTA + std::string("[B]") + Colors::RESET + " GO BACK TO MAIN MENU");
         printPaddedLine("");
         drawHorizontalBorder();
     }
