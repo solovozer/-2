@@ -10,7 +10,7 @@
 
 Ниже приведён краткий фрагмент кода, демонстрирующий описанный выше подход. 
 
-```
+```cpp
 enum TYPES {
 
      ZOMBIE,
@@ -56,7 +56,7 @@ public:
 
 В данном случае Texture и его дочерние элементы являются объектами класса Flyweight, а TextureFactory — это Flyweight factory.
 
-```
+```cpp
 class TextureFactory {
 
      unordered\_map<TYPES, CharacterTexture\*> registry;
@@ -92,7 +92,7 @@ public:
 
 Все персонажи в игре получат текстуры из фабрики
 
-```
+```cpp
 TextureFactory factory;
 
 class Character {
@@ -142,7 +142,7 @@ class Zombie : public Character {//...}
 
 Без использования Flyweights класс Character и наследующие его классы будут напрямую отвечать за отрисовку текстур при каждом создании нового объекта. (LoadRenderTexture)
 
-```
+```cpp
 class Character {
 
 public:
