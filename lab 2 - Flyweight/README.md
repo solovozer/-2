@@ -13,9 +13,9 @@
 ```
 enum TYPES {
 
-`    `ZOMBIE,
+     ZOMBIE,
 
-`    `HUMAN
+     HUMAN
 
 };
 
@@ -23,13 +23,13 @@ class CharacterTexture {
 
 public:
 
-`    `RenderTexture2D renderTex;
+     RenderTexture2D renderTex;
 
-`    `CharacterTexture() { renderTex = LoadRenderTexture(40, 40); }
+     CharacterTexture() { renderTex = LoadRenderTexture(40, 40); }
 
-`    `virtual ~CharacterTexture() { UnloadRenderTexture(renderTex); }
+     virtual ~CharacterTexture() { UnloadRenderTexture(renderTex); }
 
-`    `virtual void Generate() = 0;
+     virtual void Generate() = 0;
 
 };
 
@@ -37,9 +37,9 @@ class ZombieTexture : public CharacterTexture {
 
 public:
 
-`    `ZombieTexture() : CharacterTexture() { Generate(); }
+     ZombieTexture() : CharacterTexture() { Generate(); }
 
-`    `void Generate() override {//...}
+     void Generate() override {//...}
 
 };
 
@@ -47,9 +47,9 @@ class PlayerTexture : public CharacterTexture {
 
 public:
 
-`    `PlayerTexture() { Generate(); }
+     PlayerTexture() { Generate(); }
 
-`    `void Generate() override {//...}
+     void Generate() override {//...}
 
 };
 ```
@@ -59,33 +59,33 @@ public:
 ```
 class TextureFactory {
 
-`    `unordered\_map<TYPES, CharacterTexture\*> registry;
+     unordered\_map<TYPES, CharacterTexture\*> registry;
 
 public:
 
-`    `CharacterTexture\* GetTexture(TYPES pt) {
+     CharacterTexture\* GetTexture(TYPES pt) {
 
-`        `if (registry.find(pt) == registry.end()) {
+         if (registry.find(pt) == registry.end()) {
 
-`            `switch (pt) {
+             switch (pt) {
 
-`            `case TYPES::HUMAN: registry[pt] = new PlayerTexture(); break;
+             case TYPES::HUMAN: registry[pt] = new PlayerTexture(); break;
 
-`            `case TYPES::ZOMBIE: registry[pt] = new ZombieTexture(); break;
+             case TYPES::ZOMBIE: registry[pt] = new ZombieTexture(); break;
 
-`            `}
+             }
 
-`        `}
+         }
 
-`        `return registry[pt];
+         return registry[pt];
 
-`    `}
+     }
 
-`    `~TextureFactory() {
+     ~TextureFactory() {
 
-`        `for (auto& pair : registry) delete pair.second;
+         for (auto& pair : registry) delete pair.second;
 
-`    `}
+     }
 
 };
 ```
@@ -99,27 +99,27 @@ class Character {
 
 public:
 
-`    `Vector2 pos;
+     Vector2 pos;
 
-`    `float rot = 0;
+     float rot = 0;
 
-`    `float radius = 10.0f;
+     float radius = 10.0f;
 
-`    `TYPES type;
+     TYPES type;
 
-`    `Character(Vector2 p, TYPES tp) : pos(p), type(tp) {}
+     Character(Vector2 p, TYPES tp) : pos(p), type(tp) {}
 
-`    `void Draw() {
+     void Draw() {
 
-`        `Rectangle src = { 0, 0, (float)factory.GetTexture(type)->renderTex.texture.width, (float)-factory.GetTexture(type)->renderTex.texture.height };
+         Rectangle src = { 0, 0, (float)factory.GetTexture(type)->renderTex.texture.width, (float)-factory.GetTexture(type)->renderTex.texture.height };
 
-`        `Rectangle dest = { pos.x, pos.y, (float)factory.GetTexture(type)->renderTex.texture.width, (float)factory.GetTexture(type)->renderTex.texture.height };
+         Rectangle dest = { pos.x, pos.y, (float)factory.GetTexture(type)->renderTex.texture.width, (float)factory.GetTexture(type)->renderTex.texture.height };
 
-`        `Vector2 origin = { (float)factory.GetTexture(type)->renderTex.texture.width / 2, (float)factory.GetTexture(type)->renderTex.texture.height / 2 };
+         Vector2 origin = { (float)factory.GetTexture(type)->renderTex.texture.width / 2, (float)factory.GetTexture(type)->renderTex.texture.height / 2 };
 
-`        `DrawTexturePro(factory.GetTexture(type)->renderTex.texture, src, dest, origin, rot, WHITE);
+         DrawTexturePro(factory.GetTexture(type)->renderTex.texture, src, dest, origin, rot, WHITE);
 
-`    `}
+     }
 
 };
 
@@ -129,9 +129,9 @@ class Zombie : public Character {//...}
 
 Этот фрагмент кода используется для оценки производительности.
 
-`        `int fps = GetFPS();
+         int fps = GetFPS();
 
-`        `float vramUsed = (textureCount \* (textureSize \* textureSize \* 4 \* 2)) / 1024.0f;
+         float vramUsed = (textureCount \* (textureSize \* textureSize \* 4 \* 2)) / 1024.0f;
 ```
 
 Как показано на рисунке 2, даже если будет создано тысяча зомби, будет использовано всего 37,5 КБ оперативной памяти.
@@ -147,43 +147,43 @@ class Character {
 
 public:
 
-`    `Vector2 pos;
+     Vector2 pos;
 
-`    `float rot = 0;
+     float rot = 0;
 
-`    `float radius;
+     float radius;
 
-`    `RenderTexture2D renderTex;
+     RenderTexture2D renderTex;
 
-`    `Character() : pos({ 0, 0 }), radius(0) {
+     Character() : pos({ 0, 0 }), radius(0) {
 
-`        `renderTex.id = 0;
+         renderTex.id = 0;
 
-`    `}
+     }
 
-`    `Character(Vector2 p, int size) : pos(p), radius(size / 2.0f) {
+     Character(Vector2 p, int size) : pos(p), radius(size / 2.0f) {
 
-`        `renderTex = LoadRenderTexture(size, size);
+         renderTex = LoadRenderTexture(size, size);
 
-`    `}
+     }
 
 //...
 
-`    `virtual void Generate(int size, Color color) = 0;
+     virtual void Generate(int size, Color color) = 0;
 
-`    `void Draw() {
+     void Draw() {
 
-`        `if (renderTex.id == 0) return; 
+         if (renderTex.id == 0) return; 
 
-`        `Rectangle src = { 0, 0, (float)renderTex.texture.width, (float)-renderTex.texture.height };
+         Rectangle src = { 0, 0, (float)renderTex.texture.width, (float)-renderTex.texture.height };
 
-`        `Rectangle dest = { pos.x, pos.y, (float)renderTex.texture.width, (float)renderTex.texture.height };
+         Rectangle dest = { pos.x, pos.y, (float)renderTex.texture.width, (float)renderTex.texture.height };
 
-`        `Vector2 origin = { (float)renderTex.texture.width / 2.0f, (float)renderTex.texture.height / 2.0f };
+         Vector2 origin = { (float)renderTex.texture.width / 2.0f, (float)renderTex.texture.height / 2.0f };
 
-`        `DrawTexturePro(renderTex.texture, src, dest, origin, rot, WHITE);
+         DrawTexturePro(renderTex.texture, src, dest, origin, rot, WHITE);
 
-`    `}
+     }
 
 };
 
@@ -191,65 +191,65 @@ class Player : public Character {
 
 public:
 
-`    `//...
+     //...
 
-`    `void Generate(int size, Color color) override {
+     void Generate(int size, Color color) override {
 
-`        `if (renderTex.id == 0) return; // Safety check
+         if (renderTex.id == 0) return; // Safety check
 
-`        `BeginTextureMode(renderTex);
+         BeginTextureMode(renderTex);
 
-`        `ClearBackground(BLANK);
+         ClearBackground(BLANK);
 
-`        `float c = size / 2.0f;
+         float c = size / 2.0f;
 
-`        `DrawCircle(c, c, 12, color);            // Body
+         DrawCircle(c, c, 12, color);            // Body
 
-`        `EndTextureMode();
+         EndTextureMode();
 
-`    `}
+     }
 
-`    `//...
+     //...
 
 };
 
 class Zombie : public Character {
 
-`    `Character\* target;
+     Character\* target;
 
 public:
 
-`    `Zombie() : Character(), target(nullptr) {}
+     Zombie() : Character(), target(nullptr) {}
 
-`    `Zombie(Vector2 p, int size, Color color, Character\* targetObj)
+     Zombie(Vector2 p, int size, Color color, Character\* targetObj)
 
-`        `: Character(p, size), target(targetObj) {
+         : Character(p, size), target(targetObj) {
 
-`        `Generate(size, color);
+         Generate(size, color);
 
-`    `}
+     }
 
-`    `void Generate(int size, Color color) override {
+     void Generate(int size, Color color) override {
 
-`        `if (renderTex.id == 0) return;
+         if (renderTex.id == 0) return;
 
-`        `BeginTextureMode(renderTex);
+         BeginTextureMode(renderTex);
 
-`        `ClearBackground(BLANK);
+         ClearBackground(BLANK);
 
-`        `float c = size / 2.0f;
+         float c = size / 2.0f;
 
-`        `DrawCircle(c + 12, c - 8, 5, color); // Hands
+         DrawCircle(c + 12, c - 8, 5, color); // Hands
 
-`        `DrawCircle(c + 12, c + 8, 5, color);
+         DrawCircle(c + 12, c + 8, 5, color);
 
-`        `DrawCircle(c, c, 12, color);         // Body
+         DrawCircle(c, c, 12, color);         // Body
 
-`        `DrawCircle(c + 4, c - 3, 2, RED);    // Eyes
+         DrawCircle(c + 4, c - 3, 2, RED);    // Eyes
 
-`        `EndTextureMode();
+         EndTextureMode();
 
-`    `}
+     }
 
 };
 ```
