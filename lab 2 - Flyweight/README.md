@@ -57,7 +57,7 @@ public:
 };
 ```
 
-В данном случае Texture и его дочерние элементы являются объектами класса Flyweight, а TextureFactory — это flyweights factory.
+В данном случае Texture и его наследующие его классы являются объектами класса Flyweight, а TextureFactory — это flyweights factory.
 
 ```cpp
 class TextureFactory {
