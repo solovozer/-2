@@ -4,7 +4,7 @@
 Использовать приспособленец для отображения зомби в игре, где вы убегаете от орды зомби, которые постоянно появляются.
 
 ### **Решение:** 
-Для отображения такого большого количества зомби, вместо отрисовки текстуры для каждого зомби, мы можем поместить в каждый класс ключ-ссылку (перечисление **TYPES**), указывающий на соответствующую текстуру в **TextureFactory** (map<TYPES, CharacterTexture\*>), которая представляет собой flyweights factory.
+Для отображения такого большого количества зомби, вместо отрисовки текстуры для каждого зомби, мы можем поместить в каждый класс ключ-ссылку (перечисление **TYPES**), указывающий на соответствующую текстуру в **TextureFactory** (map<TYPES, CharacterTexture*>), которая представляет собой flyweights factory.
 
 ![cdiagram](./Assets/cd.png)
 
@@ -62,11 +62,11 @@ public:
 ```cpp
 class TextureFactory {
 
-     unordered\_map<TYPES, CharacterTexture\*> registry;
+     unordered_map<TYPES, CharacterTexture*> registry;
 
 public:
 
-     CharacterTexture\* GetTexture(TYPES pt) {
+     CharacterTexture* GetTexture(TYPES pt) {
 
          if (registry.find(pt) == registry.end()) {
 
@@ -134,7 +134,7 @@ class Zombie : public Character {//...}
 
          int fps = GetFPS();
 
-         float vramUsed = (textureCount \* (textureSize \* textureSize \* 4 \* 2)) / 1024.0f;
+         float vramUsed = (textureCount * (textureSize * textureSize * 4 * 2)) / 1024.0f;
 ```
 
 Как показано на рисунке 2, даже если будет создано тысяча зомби, будет использовано всего 37,5 КБ оперативной памяти.
@@ -219,13 +219,13 @@ public:
 
 class Zombie : public Character {
 
-     Character\* target;
+     Character* target;
 
 public:
 
      Zombie() : Character(), target(nullptr) {}
 
-     Zombie(Vector2 p, int size, Color color, Character\* targetObj)
+     Zombie(Vector2 p, int size, Color color, Character* targetObj)
 
          : Character(p, size), target(targetObj) {
 
