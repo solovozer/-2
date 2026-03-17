@@ -129,9 +129,10 @@ public:
 class Player : public Character {//...}
 
 class Zombie : public Character {//...}
+````
 
 Этот фрагмент кода используется для оценки производительности.
-
+```
          int fps = GetFPS();
 
          float vramUsed = (textureCount * (textureSize * textureSize * 4 * 2)) / 1024.0f;
