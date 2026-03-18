@@ -145,7 +145,8 @@ class Zombie : public Character {//...}
 <small>Рисунок 2: Игра c Flyweights.</small>
 
 
-### Без использования Flyweights класс Character и наследующие его классы будут напрямую отвечать за отрисовку текстур при каждом создании нового объекта. (LoadRenderTexture)
+### Без Flyweights:
+класс Character и наследующие его классы будут напрямую отвечать за отрисовку текстур при каждом создании нового объекта. (LoadRenderTexture)
 
 ```cpp
 class Character {
