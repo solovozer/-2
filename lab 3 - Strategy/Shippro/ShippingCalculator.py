@@ -11,10 +11,18 @@ class ShippingCalculator:
         name = "nil"
         
         for strategy in self._strategies:
-            cp, cn = strategy.implement_strategies(strategy, info)
-            
+            cp, cn = strategy.implement_strategies(info)
+             
             if cp < price:
                 price = cp
                 name = cn
                 
-        return round(price, 2), name
+        return CompanyInfo(round(price, 2), name)
+    
+class CompanyInfo:
+    def __init__(self, name, price: float):
+        self._name = name
+        self._price = price
+
+    def get_name(self): return self._name
+    def get_price(self): return self._price

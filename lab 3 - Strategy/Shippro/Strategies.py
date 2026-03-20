@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class ShippingInfo:
     def __init__(self, distance, weight):
         self.distance = distance 
@@ -14,7 +13,7 @@ class Strategies(ABC):
 class PochtaRuStrategies(Strategies):
     def __init__(self): super().__init__("Pochta.ru")
     def implement_strategies(self, info: ShippingInfo):
-        base = 150
+        base = 120
         rate = 30 if info.distance < 600 else 50
         return (base + (info.weight * rate)) * 1.01, self.name
 

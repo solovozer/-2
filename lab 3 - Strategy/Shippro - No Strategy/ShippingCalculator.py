@@ -5,7 +5,7 @@ class ShippingInfo:
 
 
 def pochtaru(info : ShippingInfo):
-    base = 150
+    base = 120
     rate = 30 if info.distance < 600 else 50
     return (base + (info.weight * rate)) * 1.01
 
@@ -25,16 +25,28 @@ def yandex(info : ShippingInfo):
     return (base + (info.distance * km_rate)) + w
 
 class ShippingCalculator:
-    def calculate_price(self, info: ShippingInfo) -> tuple[str, float]:
+    def calculate_price(self, info: ShippingInfo):
         poc = pochtaru(info)
         cde = cdek(info)
         yan = yandex(info)
         
         optimal = min(poc, cde, yan)
+
+        if optimal == poc: return CompanyInfo("pochta.ru", float(poc))
+        if optimal == cde: return CompanyInfo("cdek.ru", float(cde))
+        if optimal == yan: return CompanyInfo("yandex.ru", float(yan))
         
-        # Use simple parentheses to return a tuple
-        if optimal == poc: return ("pochta.ru", float(poc))
-        if optimal == cde: return ("cdek.ru", float(cde))
-        if optimal == yan: return ("yandex.ru", float(yan))
-        
-        return ("unknown", 0.0)
+        return ("nil", float('inf'))
+    
+
+class CompanyInfo:
+    def __init__(self, name_or_obj, price: float = None):
+        if isinstance(name_or_obj, CompanyInfo):
+            self._name = name_or_obj.get_name()
+            self._price = name_or_obj.get_price()
+        else:
+            self._name = name_or_obj
+            self._price = price
+
+    def get_name(self): return self._name
+    def get_price(self): return self._price

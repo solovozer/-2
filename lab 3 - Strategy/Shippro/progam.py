@@ -4,8 +4,9 @@ import kys as k
 class PackagingApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Packaging Inspector UI")
+        self.root.title("Shippro UI")
         self.root.geometry("800x600")
+        root.maxsize(800, 600)
         
         self.root.columnconfigure(0, weight=2)
         self.root.columnconfigure(1, weight=1) 
@@ -59,14 +60,15 @@ class PackagingApp:
             from Strategies import ShippingInfo, CDEKStrategies, PochtaRuStrategies, YandexStrategies
             shipment = ShippingInfo(distance=distance, weight=weight)
             strategies = [
-                CDEKStrategies,
-                PochtaRuStrategies,
-                YandexStrategies,
+                CDEKStrategies(),
+                PochtaRuStrategies(),
+                YandexStrategies() ,
             ]
             calculator = ShippingCalculator(strategies=strategies)
-            best_price, best_company = calculator.calculate_price(shipment)
+            best = calculator.calculate_price(info = shipment)
+
             self.result_label.config(
-                text=f"Best shipping price: {best_company} at {best_price:.2f} ₽"
+                text=f"Best shipping price: {best.get_name()} ₽ at {best.get_price()}"
             )
 
 if __name__ == "__main__":

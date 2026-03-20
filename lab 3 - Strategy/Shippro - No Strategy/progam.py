@@ -1,13 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
 import kys as k
-from ShippingCalculator import *
+from ShippingCalculator import ShippingCalculator, CompanyInfo, ShippingInfo
 
 class PackagingApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Packaging Inspector UI")
+        self.root.title("Shippro UI")
         self.root.geometry("800x600")
+        root.maxsize(800, 600)
         
         self.root.columnconfigure(0, weight=2)
         self.root.columnconfigure(1, weight=1) 
@@ -52,18 +53,19 @@ class PackagingApp:
         k.draw_refined_package(self.canvas, scale)
 
     def update_shipping(self):
-            sc = ShippingCalculator()
-            try:
-                distance = float(self.dist_var.get())
-                weight = float(self.weight_var.get())
-            except Exception: return
-            best_company, best_price = ShippingCalculator.calculate_price(
-                        sc, info = ShippingInfo(distance=distance, weight=weight)
-            )
-            self.result_label.config(
-                text=f"Best shipping price: {best_company} at {best_price:.2f} ₽"
-            )
-    
+        try:
+            distance = float(self.dist_var.get())
+            weight = float(self.weight_var.get())
+        except ValueError: return 
+
+        shipping_info = ShippingInfo(distance=distance, weight=weight)
+        calculator = ShippingCalculator()
+        best = calculator.calculate_price(info=shipping_info)
+
+        self.result_label.config(
+            text=f"Best shipping price: {best.get_name()} at {best.get_price()} ₽"
+        )
+        
 if __name__ == "__main__":
     root = tk.Tk()
     app = PackagingApp(root)

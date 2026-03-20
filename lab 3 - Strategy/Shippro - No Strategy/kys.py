@@ -1,15 +1,25 @@
 import numpy as np
 
+PI = np.pi
+cos30 = np.cos(PI/6)
+sin30 = np.sin(PI/6)
+
+
 def draw_refined_package(canvas, scale):
-    canvas.delete("all") 
-    cx = canvas.winfo_width() / 2
-    cy = canvas.winfo_height() / 2
-    PI = np.pi
-    r_scale = (scale + 10) / 11 
-    O = np.array([cx, cy + (50 * r_scale)])
+    r_scale = (scale + 13) / 14 
     width, length, height = 120 * r_scale, 180 * r_scale, 150 * r_scale
-    l = np.array([-np.cos(PI/6), np.sin(PI/6)])
-    r = np.array([np.cos(PI/6), np.sin(PI/6)])
+    
+    total_h_2d = (length + width) * sin30 + height
+
+    offset_x = (length - width) * cos30 / 2
+    offset_y = (total_h_2d / 2) - (height)
+
+    canvas.delete("all") 
+    cx = canvas.winfo_width() / 2 + offset_x
+    cy = canvas.winfo_height() / 2 + offset_y
+    O = np.array([cx, cy + (50 * r_scale)])
+    l = np.array([-cos30, sin30])
+    r = np.array([cos30, sin30])
     u = np.array([0, -1])
 
     c_top, c_left, c_right, c_tape = "#d9bf77", "#c9af67", "#ba9f57", "#a88e46"
