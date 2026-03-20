@@ -58,7 +58,7 @@ best = calculator.calculate_price(#...)
 
 </br>
 
-На рисунке 2 представлена ​​диаграмма последовательностей для update_price().
+На рисунке 2 представлена ​​диаграмма последовательностей для calculate_price().
 ![up](./Assets/cp.png)
 
 </br>
