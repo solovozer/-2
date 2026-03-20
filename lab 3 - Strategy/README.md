@@ -74,6 +74,7 @@ def yandex(info : ShippingInfo):#...
 ```
 </br>
 ShippingCalculator:
+
 ```python
 class ShippingCalculator:
     def calculate_price(self, info: ShippingInfo):
