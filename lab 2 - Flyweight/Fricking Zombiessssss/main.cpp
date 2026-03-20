@@ -1,4 +1,4 @@
-#define FLYWEIGHT 0
+#define FLYWEIGHT 1
 
 
 #if FLYWEIGHT
