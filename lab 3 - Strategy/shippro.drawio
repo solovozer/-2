@@ -172,7 +172,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="VqaC07_7uXCmWbaiwV0a" name="Page-2">
-    <mxGraphModel dx="1228" dy="776" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
+    <mxGraphModel dx="1044" dy="660" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -253,7 +253,7 @@
         <mxCell id="HmnWQPJ_zRQPYl0V8vZL-46" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="HmnWQPJ_zRQPYl0V8vZL-45" vertex="1">
           <mxGeometry x="58" y="67.5" width="10" height="479.5" as="geometry" />
         </mxCell>
-        <mxCell id="HmnWQPJ_zRQPYl0V8vZL-50" value="Real price = &#39;inf&#39;&amp;nbsp;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" parent="HmnWQPJ_zRQPYl0V8vZL-45" source="HmnWQPJ_zRQPYl0V8vZL-46" target="HmnWQPJ_zRQPYl0V8vZL-46" edge="1">
+        <mxCell id="HmnWQPJ_zRQPYl0V8vZL-50" value="price = &#39;inf&#39;&amp;nbsp;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" parent="HmnWQPJ_zRQPYl0V8vZL-45" source="HmnWQPJ_zRQPYl0V8vZL-46" target="HmnWQPJ_zRQPYl0V8vZL-46" edge="1">
           <mxGeometry x="0.0893" y="17" relative="1" as="geometry">
             <mxPoint x="68" y="81" as="sourcePoint" />
             <Array as="points">
@@ -286,7 +286,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HmnWQPJ_zRQPYl0V8vZL-51" value="String name = &#39;nil&#39;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" parent="1" edge="1">
+        <mxCell id="HmnWQPJ_zRQPYl0V8vZL-51" value="name = &#39;nil&#39;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" parent="1" edge="1">
           <mxGeometry x="0.0209" y="13" relative="1" as="geometry">
             <mxPoint x="470.94000000000005" y="1158.06" as="sourcePoint" />
             <Array as="points">
