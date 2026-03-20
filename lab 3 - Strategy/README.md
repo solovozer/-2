@@ -101,7 +101,4 @@ class ShippingCalculator:
 
 ---
 
-
-
-
 Ссылка на проект:  [https://github.com/solovozer/-2](https://github.com/solovozer/-2)
