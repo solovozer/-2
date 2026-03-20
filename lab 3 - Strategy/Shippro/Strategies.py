@@ -16,7 +16,7 @@ class PochtaRuStrategies(Strategies):
     def implement_strategies(self, info: ShippingInfo):
         base = 150
         rate = 30 if info.distance < 600 else 50
-        return (base + (info.weight * rate)) * 1.01
+        return (base + (info.weight * rate)) * 1.01, self.name
 
 class CDEKStrategies(Strategies):
     def __init__(self): super().__init__("cdek.ru")
@@ -26,7 +26,7 @@ class CDEKStrategies(Strategies):
         elif info.weight <= 5.0: base = 950
         else: base = 1500
         multiplier = 1.0 if info.distance < 1000 else info.distance / 1000
-        return (base * multiplier) * 1.008
+        return (base * multiplier) * 1.008, self.name
 
 class YandexStrategies(Strategies):
     def __init__(self): 
@@ -35,7 +35,7 @@ class YandexStrategies(Strategies):
         base = 150
         km_rate = 25
         w = (info.weight * info.weight / 50)  
-        return (base + (info.distance * km_rate)) + w
+        return (base + (info.distance * km_rate)) + w, self.name
     
 
 

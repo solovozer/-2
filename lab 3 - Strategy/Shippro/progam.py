@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 import kys as k
 
 class PackagingApp:
@@ -55,17 +54,17 @@ class PackagingApp:
                 distance = float(self.dist_var.get())
                 weight = float(self.weight_var.get())
             except Exception: return
+
             from ShippingCalculator import ShippingCalculator
             from Strategies import ShippingInfo, CDEKStrategies, PochtaRuStrategies, YandexStrategies
             shipment = ShippingInfo(distance=distance, weight=weight)
-            calculators = [
-                ShippingCalculator(CDEKStrategies()),
-                ShippingCalculator(PochtaRuStrategies()),
-                ShippingCalculator(YandexStrategies()),
+            strategies = [
+                CDEKStrategies,
+                PochtaRuStrategies,
+                YandexStrategies,
             ]
-            optimal = min(calculators, key=lambda c: c.calculate_price(shipment))
-            best_price = optimal.calculate_price(shipment)
-            best_company = optimal.strategy.name
+            calculator = ShippingCalculator(strategies=strategies)
+            best_price, best_company = calculator.calculate_price(shipment)
             self.result_label.config(
                 text=f"Best shipping price: {best_company} at {best_price:.2f} ₽"
             )
