@@ -298,7 +298,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HmnWQPJ_zRQPYl0V8vZL-52" value="foreach strategy in strategies" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=185;height=33;" parent="1" vertex="1">
-          <mxGeometry x="406.94" y="1204" width="628" height="348" as="geometry" />
+          <mxGeometry x="405" y="1204" width="629.94" height="278" as="geometry" />
         </mxCell>
         <mxCell id="HmnWQPJ_zRQPYl0V8vZL-53" value="strategy:Strategies" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
           <mxGeometry x="709.94" y="1240" width="124" height="327" as="geometry" />
