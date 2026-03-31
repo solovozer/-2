@@ -53,7 +53,7 @@ strategies = [
     YandexStrategies(),
 ]
 calculator = ShippingCalculator(strategies=strategies)
-best = calculator.calculate_price(#...)
+best = calculator.calculate_price()#...
 ```
 
 </br>
