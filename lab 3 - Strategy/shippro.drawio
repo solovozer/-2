@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2" pages="2">
   <diagram name="Strategy" id="5NAaxRajESKhKM0Nb6Ol">
-    <mxGraphModel dx="1044" dy="660" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
+    <mxGraphModel dx="1283" dy="660" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -67,7 +67,7 @@
         <mxCell id="4s1pikkc9ykj8Qu7zjh4-34" value="+ calculate_price(info : ShippingInto) : Real" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4s1pikkc9ykj8Qu7zjh4-31" vertex="1">
           <mxGeometry y="26" width="386" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="4s1pikkc9ykj8Qu7zjh4-36" value="strategy" style="endArrow=open;endSize=18;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.545;entryY=0.962;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=diamondThin;startFill=0;startSize=26;sourcePerimeterSpacing=0;" parent="1" target="4s1pikkc9ykj8Qu7zjh4-4" edge="1">
+        <mxCell id="4s1pikkc9ykj8Qu7zjh4-36" value="strategies" style="endArrow=open;endSize=18;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.545;entryY=0.962;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=diamondThin;startFill=0;startSize=26;sourcePerimeterSpacing=0;" parent="1" target="4s1pikkc9ykj8Qu7zjh4-4" edge="1">
           <mxGeometry x="0.4155" y="-33" width="160" relative="1" as="geometry">
             <mxPoint x="372.03999999999996" y="463.39" as="sourcePoint" />
             <mxPoint x="371.99800000000005" y="332.00199999999995" as="targetPoint" />
