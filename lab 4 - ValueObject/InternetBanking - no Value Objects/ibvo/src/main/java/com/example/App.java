@@ -29,6 +29,8 @@ public class App
         app.get("/transfer-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transfer-money.html")));
         app.get("/account-info", ctx -> ctx.html(serveFile("src/main/resources/static/templates/account-info.html")));
         
+        app.get("/currencies", ctx -> ctx.json(CurrencyConstants.SUPPORTED_CURRENCIES));
+        
         app.post("/accounts", ctx -> {
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
@@ -40,7 +42,7 @@ public class App
                     return;
                 }
                 
-                Money initialBalance = new Money(request.initialBalance, request.currency);
+                com.example.Monies.BaseMoney initialBalance = MoneyFactory.create(request.initialBalance, request.currency);
                 Account account = new Account(request.id, request.name, initialBalance);
                 // Save to DB
                 saveAccount(account);
@@ -73,7 +75,7 @@ public class App
         app.post("/transfer", ctx -> {
             try {
                 TransferRequest request = objectMapper.readValue(ctx.body(), TransferRequest.class);
-                Money amount = new Money(request.amount, request.currency);
+                com.example.Monies.BaseMoney amount = MoneyFactory.create(request.amount, request.currency);
                 transferService.transfer(request.fromId, request.toId, amount);
                 ctx.result("Transfer successful");
             } catch (Exception e) {

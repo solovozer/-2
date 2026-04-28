@@ -24,8 +24,7 @@
 
         <label for="currency">Currency</label>
         <select id="currency" name="currency" required>
-          <option value="USD">USD</option>
-          <option value="VND">VND</option>
+          <!-- Options populated by JavaScript -->
         </select>
 
         <button type="submit">Create Account</button>
@@ -39,6 +38,25 @@
   <footer>Simple Bank demo</footer>
 
   <script>
+    // Fetch currencies and populate select
+    async function loadCurrencies() {
+      try {
+        const response = await fetch('/currencies');
+        const currencies = await response.json();
+        const select = document.getElementById('currency');
+        currencies.forEach(currency => {
+          const option = document.createElement('option');
+          option.value = currency;
+          option.textContent = currency;
+          select.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Failed to load currencies:', error);
+      }
+    }
+
+    loadCurrencies();
+
     const form = document.getElementById('create-account-form');
     const message = document.getElementById('message');
 

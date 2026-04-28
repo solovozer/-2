@@ -2,6 +2,8 @@ package com.example;
 
 import java.sql.*;
 
+import com.example.Monies.BaseMoney;
+
 public class DatabaseConfig {
     private static final String URL = "jdbc:sqlite:bank.db";
 
@@ -32,7 +34,7 @@ public class DatabaseConfig {
         }
     }
 
-    public void saveTransaction(String fromId, String toId, Money money) {
+    public void saveTransaction(String fromId, String toId, BaseMoney money) {
         String sql = "INSERT INTO transactions(from_id, to_id, amount, currency) VALUES(?,?,?,?)";
 
         try (Connection conn = DatabaseConfig.connect();

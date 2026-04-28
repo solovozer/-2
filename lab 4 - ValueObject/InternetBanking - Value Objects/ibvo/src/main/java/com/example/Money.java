@@ -10,7 +10,7 @@ public final class Money {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount cannot be negative");
         }
-        if (currency == null || (!currency.equals("USD") && !currency.equals("VND"))) {
+        if (currency == null || !CurrencyConstants.SUPPORTED_CURRENCIES.contains(currency)) {
             throw new IllegalArgumentException("Unsupported or null currency");
         }
         this.AMOUNT = amount;

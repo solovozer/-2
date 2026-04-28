@@ -2,6 +2,8 @@ package com.example;
 
 import java.sql.*;
 
+import com.example.Monies.BaseMoney;
+
 public class AccountRepository {
     
     public Account findById(String id) {
@@ -17,7 +19,7 @@ public class AccountRepository {
                 String name = rs.getString("name");
                 long amount = rs.getLong("balance_amount");
                 String currency = rs.getString("balance_currency");
-                Money balance = new Money(amount, currency);
+                BaseMoney balance = MoneyFactory.create(amount, currency);
                 return new Account(id, name, balance);
             }
         } catch (SQLException e) {
@@ -42,7 +44,7 @@ public class AccountRepository {
         }
     }
     
-    public void logTransaction(String fromId, String toId, Money amount) {
+    public void logTransaction(String fromId, String toId, BaseMoney amount) {
         DatabaseConfig dbConfig = new DatabaseConfig();
         dbConfig.saveTransaction(fromId, toId, amount);
     }

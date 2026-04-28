@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.Monies.BaseMoney;
+
 public class TransferService {
     private final AccountRepository AR;
 
@@ -7,7 +9,7 @@ public class TransferService {
         AR = repo;
     } 
     
-    public void transfer(String fromId, String toId, Money amount) {
+    public void transfer(String fromId, String toId, BaseMoney amount) {
         Account from = AR.findById(fromId);
         Account to = AR.findById(toId);
 

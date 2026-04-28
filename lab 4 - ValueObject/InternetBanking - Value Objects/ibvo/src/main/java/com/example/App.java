@@ -29,6 +29,8 @@ public class App
         app.get("/transfer-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transfer-money.html")));
         app.get("/account-info", ctx -> ctx.html(serveFile("src/main/resources/static/templates/account-info.html")));
         
+        app.get("/currencies", ctx -> ctx.json(CurrencyConstants.SUPPORTED_CURRENCIES));
+        
         app.post("/accounts", ctx -> {
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
