@@ -1,15 +1,15 @@
 package com.example;
 
 public class TransferService {
-    private final AccountRepository ar;
+    private final AccountRepository AR;
 
     public TransferService(AccountRepository repo) {
-        ar = repo;
+        AR = repo;
     } 
     
     public void transfer(String fromId, String toId, Money amount) {
-        Account from = ar.findById(fromId);
-        Account to = ar.findById(toId);
+        Account from = AR.findById(fromId);
+        Account to = AR.findById(toId);
 
         if (!from.getCurrency().equals(amount.getCurrency()) || 
             !to.getCurrency().equals(amount.getCurrency())) {
@@ -19,8 +19,8 @@ public class TransferService {
         from.withdraw(amount);
         to.deposit(amount);
 
-        ar.updateBalance(from);
-        ar.updateBalance(to);
-        ar.logTransaction(fromId, toId, amount);
+        AR.updateBalance(from);
+        AR.updateBalance(to);
+        AR.logTransaction(fromId, toId, amount);
     }
 }

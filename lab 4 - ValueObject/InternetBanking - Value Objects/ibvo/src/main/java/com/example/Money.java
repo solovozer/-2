@@ -3,8 +3,8 @@ package com.example;
 import java.util.Objects;
 
 public final class Money {
-    private final long amount;
-    private final String currency;
+    private final long AMOUNT;
+    private final String CURRENCY;
 
     public Money(long amount, String currency) {
         if (amount < 0) {
@@ -13,26 +13,22 @@ public final class Money {
         if (currency == null || (!currency.equals("USD") && !currency.equals("VND"))) {
             throw new IllegalArgumentException("Unsupported or null currency");
         }
-        this.amount = amount;
-        this.currency = currency;
+        this.AMOUNT = amount;
+        this.CURRENCY = currency;
     }
 
     public String getFormattedAmount() {
-        return String.format("%.2f %s", amount / 100.0, currency);
-    }
-
-    public long getRawAmount() {
-        return amount;
+        return String.format("%.2f %s", AMOUNT / 100.0, CURRENCY);
     }
 
     public long getAmount() {
-        return amount;
+        return AMOUNT;
     }
 
-    public String getCurrency() { return currency; }
+    public String getCurrency() { return CURRENCY; }
     
     public boolean isSameCurrency(Money other) {
-        return this.currency.equals(other.currency);
+        return this.CURRENCY.equals(other.CURRENCY);
     }
 
     public Money add(Money amount) {
@@ -54,6 +50,6 @@ public final class Money {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return amount == money.amount && Objects.equals(currency, money.currency);
+        return AMOUNT == money.AMOUNT && Objects.equals(CURRENCY, money.CURRENCY);
     }
 }

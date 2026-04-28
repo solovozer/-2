@@ -1,13 +1,13 @@
 package com.example;
 
 public class Account {
-    private final String id;
-    private final String owner;
+    private final String ID;
+    private final String OWNER;
     private Money balance;
 
     public Account(String id, String owner, Money initialBalance) {
-        this.id = id;
-        this.owner = owner;
+        this.ID = id;
+        this.OWNER = owner;
         this.balance = initialBalance;
     }
 
@@ -27,6 +27,6 @@ public class Account {
     }
 
     public Money getBalance() { return balance; }
-    public String getId() { return id; }
-    public String getOwner() { return owner; }
+    public String getId() { return ID; }
+    public String getOwner() { return OWNER; }
 }
