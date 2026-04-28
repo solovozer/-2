@@ -16,20 +16,14 @@ public class Account {
     }
 
     public void deposit(Money amount) {
-        if (!balance.isSameCurrency(amount)) {
-            throw new IllegalArgumentException("Currency mismatch!");
-        }
-        this.balance = new Money(this.balance.getAmount() + amount.getAmount(), this.getCurrency());
+        balance = balance.add(amount);
     }
 
     public void withdraw(Money amount) {
-        if (!balance.isSameCurrency(amount)) {
-            throw new IllegalArgumentException("Currency mismatch!");
-        }
-        if (this.balance.getAmount() < amount.getAmount()) {
+        if (balance.getAmount() < amount.getAmount()) {
             throw new IllegalArgumentException("Insufficient funds!");
         }
-        this.balance = new Money(this.balance.getAmount() - amount.getAmount(), this.getCurrency());
+        balance = balance.subtract(amount);
     }
 
     public Money getBalance() { return balance; }

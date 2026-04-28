@@ -35,6 +35,20 @@ public final class Money {
         return this.currency.equals(other.currency);
     }
 
+    public Money add(Money amount) {
+        if (!this.isSameCurrency(amount)) {
+            throw new IllegalArgumentException("Currency mismatch!");
+        }
+        return new Money(this.getAmount() + amount.getAmount(), this.getCurrency());
+    }
+
+    public Money subtract(Money amount) {
+        if (!this.isSameCurrency(amount)) {
+            throw new IllegalArgumentException("Currency mismatch!");
+        }
+        return new Money(this.getAmount() - amount.getAmount(), this.getCurrency());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

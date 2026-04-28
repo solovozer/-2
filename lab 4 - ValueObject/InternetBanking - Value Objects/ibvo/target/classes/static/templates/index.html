@@ -31,6 +31,19 @@
       </ul>
     </div>
   </main>
+  <button id="wipeButton" onclick="confirmWipe()">Wipe All Data</button>        <!--NEEDS CSS TO PUT THIS IN THE BOTOTM RIGHT CORNER-->
   <footer>Simple Bank demo</footer>
+  <script>
+    async function confirmWipe() {
+        if (confirm("Are you sure? This will delete all records permanently.")) {
+            //NEEDS LOGIC FOR DATA WIPE
+            if (response.ok) {
+                alert("Database wiped successfully.");
+            } else {
+                alert("Error wiping database.");
+            }
+        }
+    }
+    </script>
 </body>
 </html>
