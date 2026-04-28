@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Bank</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Simple Bank</h1>
+    <p>Manage accounts, check balances, and transfer money.</p>
+  </header>
+  <main>
+    <div class="card">
+      <h2>Start</h2>
+      <p>Use the pages below to create accounts, transfer money, or check an account balance.</p>
+      <div class="page-links">
+        <a href="/create-account">Create Account</a>
+        <a href="/transfer-money">Transfer Money</a>
+        <a href="/account-info">Account Info</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Quick API</h2>
+      <p>Backend endpoints:</p>
+      <ul>
+        <li><code>POST /accounts</code></li>
+        <li><code>GET /accounts/{id}</code></li>
+        <li><code>POST /transfer</code></li>
+      </ul>
+    </div>
+  </main>
+  <footer>Simple Bank demo</footer>
+</body>
+</html>
