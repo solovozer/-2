@@ -64,8 +64,9 @@ public class App
         // Endpoint to get account transactions
         app.get("/accounts/{id}/transactions", ctx -> {
             String id = ctx.pathParam("id");
-            // For now, return empty array - transactions not implemented yet
-            ctx.json(new java.util.ArrayList<>());
+            DatabaseConfig db = new DatabaseConfig();
+            java.util.List<DatabaseConfig.TransactionRecord> transactions = db.getTransactionsForAccount(id);
+            ctx.json(transactions);
         });
         
         // Endpoint to transfer money
@@ -77,6 +78,16 @@ public class App
                 ctx.result("Transfer successful");
             } catch (Exception e) {
                 ctx.status(400).result("Transfer failed: " + e.getMessage());
+            }
+        });
+        
+        // Endpoint to wipe all database data
+        app.post("/api/admin/487135rrdbfe854y/wipe", ctx -> {
+            try {
+                wipeDatabase();
+                ctx.result("Database wiped successfully");
+            } catch (Exception e) {
+                ctx.status(500).result("Failed to wipe database: " + e.getMessage());
             }
         });
         
@@ -97,6 +108,28 @@ public class App
             pstmt.executeUpdate();
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+    
+    private static void wipeDatabase() {
+        // 1. Connection logic
+        try (java.sql.Connection conn = DatabaseConfig.connect();
+            java.sql.Statement stmt = conn.createStatement()) {
+            
+            conn.setAutoCommit(false);
+
+            try {
+                stmt.executeUpdate("DELETE FROM transactions");
+                stmt.executeUpdate("DELETE FROM users");
+                conn.commit();
+            } catch (java.sql.SQLException e) {
+                conn.rollback();
+                throw e;
+            }
+
+        } catch (java.sql.SQLException e) {
+            System.err.println("Database Wipe Failed: " + e.getMessage());
+            throw new RuntimeException("Wipe failed", e);
         }
     }
     

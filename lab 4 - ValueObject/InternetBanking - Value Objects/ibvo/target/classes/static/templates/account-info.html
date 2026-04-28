@@ -92,7 +92,7 @@
               <tr style="border-bottom: 1px solid #e5e7eb;">
                 <td style="padding: 10px;">${t.fromId}</td>
                 <td style="padding: 10px;">${t.toId}</td>
-                <td style="padding: 10px; text-align: right;">${t.amount}</td>
+                <td style="padding: 10px; text-align: right;">${(t.amount / 100).toFixed(2)} ${t.currency}</td>
                 <td style="padding: 10px;">${new Date(t.timestamp).toLocaleDateString()}</td>
               </tr>
             `).join('');

@@ -48,4 +48,53 @@ public class DatabaseConfig {
             System.out.println(e.getMessage());
         }
     }
+
+    public java.util.List<TransactionRecord> getTransactionsForAccount(String accountId) {
+        String sql = "SELECT id, from_id, to_id, amount, currency, timestamp FROM transactions " +
+                    "WHERE from_id = ? OR to_id = ? ORDER BY timestamp DESC";
+        
+        java.util.List<TransactionRecord> transactions = new java.util.ArrayList<>();
+        
+        try (Connection conn = DatabaseConfig.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, accountId);
+            pstmt.setString(2, accountId);
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                TransactionRecord record = new TransactionRecord(
+                    rs.getInt("id"),
+                    rs.getString("from_id"),
+                    rs.getString("to_id"),
+                    rs.getLong("amount"),
+                    rs.getString("currency"),
+                    rs.getString("timestamp")
+                );
+                transactions.add(record);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return transactions;
+    }
+
+    public static class TransactionRecord {
+        public final int id;
+        public final String fromId;
+        public final String toId;
+        public final long amount;
+        public final String currency;
+        public final String timestamp;
+        
+        public TransactionRecord(int id, String fromId, String toId, long amount, String currency, String timestamp) {
+            this.id = id;
+            this.fromId = fromId;
+            this.toId = toId;
+            this.amount = amount;
+            this.currency = currency;
+            this.timestamp = timestamp;
+        }
+    }
 }
