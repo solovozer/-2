@@ -32,6 +32,14 @@ public class App
         app.post("/accounts", ctx -> {
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
+                
+                // Check if account already exists
+                Account existingAccount = repo.findById(request.id);
+                if (existingAccount != null) {
+                    ctx.status(409).result("Account with ID '" + request.id + "' already exists");
+                    return;
+                }
+                
                 Money initialBalance = new Money(request.initialBalance, request.currency);
                 Account account = new Account(request.id, request.name, initialBalance);
                 // Save to DB
