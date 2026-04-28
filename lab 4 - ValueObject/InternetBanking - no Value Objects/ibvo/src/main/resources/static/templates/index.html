@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Bank</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Simple Bank</h1>
+    <p>Manage accounts, check balances, and transfer money.</p>
+  </header>
+  <main>
+    <div class="card">
+      <h2>Start</h2>
+      <p>Use the pages below to create accounts, transfer money, or check an account balance.</p>
+      <div class="page-links">
+        <a href="/create-account">Create Account</a>
+        <a href="/transfer-money">Transfer Money</a>
+        <a href="/account-info">Account Info</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Quick API</h2>
+      <p>Backend endpoints:</p>
+      <ul>
+        <li><code>POST /accounts</code></li>
+        <li><code>GET /accounts/{id}</code></li>
+        <li><code>POST /transfer</code></li>
+      </ul>
+    </div>
+        <button id="wipe-db-btn" style="
+        width: 140px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 1000;">
+        Wipe Database
+    </button>
+
+    <div id="wipe-message" style="
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        display: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        font-size: 14px;
+        z-index: 1000;">
+    </div>
+  </main>
+  <footer>Simple Bank demo</footer>
+
+  <script>
+    async function confirmWipe() {
+        if (confirm("Are you sure? This will delete all records permanently.")) {
+            try {
+                const response = await fetch('/wipe-database', { method: 'POST' });
+                const text = await response.text();
+                
+                if (response.ok) {
+                    alert("Database wiped successfully.");
+                } else {
+                    alert("Error wiping database: " + text);
+                }
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        }
+    }
+
+    const wipeBtn = document.getElementById('wipe-db-btn');
+    const messageDiv = document.getElementById('wipe-message');
+
+    wipeBtn.addEventListener('click', () => {
+        // This triggers the native browser confirmation popup
+        const confirmed = window.confirm("Are you sure? This will permanently delete all data!");
+
+        if (confirmed) {
+            performWipe();
+        }
+    });
+
+    async function performWipe() {
+        try {
+            const response = await fetch('/api/admin/487135rrdbfe854y/wipe', { 
+                method: 'POST' 
+            });
+
+            if (response.ok) {
+                messageDiv.textContent = "Database successfully wiped.";
+                messageDiv.style.color = "#28a745"; // Green for success
+            } else {
+                // 3. Handle Server Errors (e.g., SQL Foreign Key issues)
+                const errorText = await response.text();
+                messageDiv.textContent = "Error: " + errorText;
+                messageDiv.style.color = "#dc3545";
+            }
+        } catch (error) {
+            // 4. Handle Network Errors
+            messageDiv.textContent = "Failed to reach server.";
+            messageDiv.style.color = "#dc3545";
+        }
+
+        messageDiv.style.display = 'block';
+        setTimeout(() => { messageDiv.style.display = 'none'; }, 5000);
+    }
+  </script>
+</body>
+</html>
