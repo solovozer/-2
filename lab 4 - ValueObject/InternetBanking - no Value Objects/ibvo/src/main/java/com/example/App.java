@@ -1,6 +1,8 @@
 package com.example;
 
 import io.javalin.Javalin;
+
+import com.example.Monies.USDMoney;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.file.Files;
 import java.nio.file.Paths;
