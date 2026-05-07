@@ -10,6 +10,16 @@ import java.math.BigDecimal;
 
 public class App 
 {
+    public static void Test() {
+        Money money1 = new Money(new BigDecimal("100.00"), "USD");
+
+        Account account = new Account("alice_TEST", "Alice", money1);
+        System.out.println("Initial Balance: " + account.getBalance().getFormattedAmount());
+        money1.add(new Money(new BigDecimal("1000.00"), "USD"));
+
+        System.out.println("Current Balance: " + account.getBalance().getFormattedAmount());
+    }
+
     public static void main( String[] args )
     {
         DatabaseConfig.initialize();
@@ -40,11 +50,11 @@ public class App
                 // Check if account already exists
                 Account existingAccount = repo.findById(request.id);
                 if (existingAccount != null) {
-                    ctx.status(409).result("Account with ID '" + request.id + "' already exists");
+                    ctx.status(409).result("Account with Name '" + request.id + "' already exists");
                     return;
                 }
                 
-                com.example.Monies.BaseMoney initialBalance = MoneyFactory.create(request.initialBalance, request.currency);
+                Money initialBalance = new Money(request.initialBalance, request.currency);
                 Account account = new Account(request.id, request.name, initialBalance);
                 // Save to DB
                 saveAccount(account);
@@ -77,7 +87,7 @@ public class App
         app.post("/transfer", ctx -> {
             try {
                 TransferRequest request = objectMapper.readValue(ctx.body(), TransferRequest.class);
-                com.example.Monies.BaseMoney amount = MoneyFactory.create(request.amount, request.currency);
+                Money amount = new Money(request.amount, request.currency);
                 transferService.transfer(request.fromId, request.toId, amount);
                 ctx.result("Transfer successful");
             } catch (Exception e) {

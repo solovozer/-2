@@ -40,7 +40,7 @@ public class App
                 // Check if account already exists
                 Account existingAccount = repo.findById(request.id);
                 if (existingAccount != null) {
-                    ctx.status(409).result("Account with ID '" + request.id + "' already exists");
+                    ctx.status(409).result("Account with Name '" + request.id + "' already exists");
                     return;
                 }
                 

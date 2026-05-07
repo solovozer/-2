@@ -1,19 +1,23 @@
-package com.example.Monies;
+package com.example;
 
 import java.util.Objects;
 import java.math.BigDecimal;
 
-public abstract class BaseMoney {
-    private BigDecimal amount; // Value in minor units (e.g., cents)
+public class Money {
+    private BigDecimal amount;
+    private final String currency;
 
-    public BaseMoney(BigDecimal amount) {
+    public Money(BigDecimal amount, String currency) {
         if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Amount cannot be negative");
         }
         this.amount = amount;
+        this.currency = currency;
     }
 
-    public abstract String getCurrency();
+    public String getCurrency() {
+        return currency;
+    }
 
     public String getFormattedAmount() {
         return String.format("%.2f %s", amount.divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_UP), getCurrency());
@@ -27,14 +31,14 @@ public abstract class BaseMoney {
         return amount;
     }
 
-    public void add(BaseMoney other) {
+    public void add(Money other) {
         if (!this.getCurrency().equals(other.getCurrency())) {
             throw new IllegalArgumentException("Currency mismatch");
         }
         this.amount = this.amount.add(other.getAmount());
     }
 
-    public void subtract(BaseMoney other) {
+    public void subtract(Money other) {
         if (!this.getCurrency().equals(other.getCurrency())) {
             throw new IllegalArgumentException("Currency mismatch");
         }
@@ -45,7 +49,7 @@ public abstract class BaseMoney {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        BaseMoney money = (BaseMoney) obj;
+        Money money = (Money) obj;
         return amount.compareTo(money.amount) == 0 && Objects.equals(getCurrency(), money.getCurrency());
     }
 

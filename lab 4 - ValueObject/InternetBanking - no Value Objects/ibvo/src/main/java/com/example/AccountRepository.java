@@ -1,7 +1,6 @@
 package com.example;
 
 import java.sql.*;
-import com.example.Monies.BaseMoney;
 import java.math.BigDecimal;
 
 public class AccountRepository {
@@ -19,7 +18,7 @@ public class AccountRepository {
                 String name = rs.getString("name");
                 BigDecimal amount = rs.getBigDecimal("balance_amount");
                 String currency = rs.getString("balance_currency");
-                BaseMoney balance = MoneyFactory.create(amount, currency);
+                Money balance = new Money(amount, currency);
                 return new Account(id, name, balance);
             }
         } catch (SQLException e) {
@@ -44,7 +43,7 @@ public class AccountRepository {
         }
     }
     
-    public void logTransaction(String fromId, String toId, BaseMoney amount) {
+    public void logTransaction(String fromId, String toId, Money amount) {
         DatabaseConfig dbConfig = new DatabaseConfig();
         dbConfig.saveTransaction(fromId, toId, amount);
     }

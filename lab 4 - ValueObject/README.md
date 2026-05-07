@@ -4,50 +4,45 @@
 </br>
 
 ## Без применения Value Object:
-Каждый тип валюты будет храниться в соответствующем классе. Операции, выполняемые над валютой, будут непосредственно изменять денежное значение, хранящееся на счете. За создание соответствующего типа валюты будет отвечать класс `MoneyFactory`.
+Тип валюта будет создан и сохранен в объеке константом. Денежная стоимость после каждой транзакции будет изменяться непосредственно с помощью методов add() и subtract().
 
 ```java
 
 public abstract class BaseMoney {
     private BigDecimal amount; 
-    //...
+    private final String currency;
 
-    public void add(BaseMoney other) {
+    public void add(Money other) {
         if (!this.getCurrency().equals(other.getCurrency())) {
             throw new IllegalArgumentException("Currency mismatch");
         }
-        this.amount += other.getAmount();
+        this.amount = this.amount.add(other.getAmount());
     }
 
-    public void subtract(BaseMoney other) {
+    public void subtract(Money other) {
         if (!this.getCurrency().equals(other.getCurrency())) {
             throw new IllegalArgumentException("Currency mismatch");
         }
-        this.amount -= other.getAmount();
+        this.amount = this.amount.subtract(other.getAmount());
     }
 }
 ```
 
-И каждый класс, представляющий конкретный тип валюты, будет наследовать от базового типа валюты, при этом определённые компоненты будут модифицированы.
+Потом этот класс используется для создания аккоунта.
+
 ```java
-public class CADMoney extends BaseMoney{
-    public CADMoney(BigDecimal amount) {
-        super(amount);
-    }
+public class Account {
+    private final String id;
+    private final String owner;
+    private Money balance;
 
-    @Override
-    public String getCurrency() {
-        return "CAD";
-    } 
+    public Account(String id, String owner, Money initialBalance) {} //...
 }
 ```
 
-При использовании первого подхода любое изменение значения валюты влечет за собой изменение её значения во всех связанных классах. Любой класс обладает полномочиями хранить наследующий экземпляр конкретного класса `BaseMoney`, использовать его для создания счета (представляющего собой класс `Account`), а затем напрямую изменять значение внутри класса `BaseMoney`  — и всё это без ведома самого класса `Account` о произошедшем изменении.
+
+При использовании этого подхода любое изменение значения в объекте влечет за собой изменение её значения во всех связанных с ним классах. Любой класс обладает полномочиями хранить экземпляр класса `Money`, использовать его для создания счета (представляющего собой класс `Account`), а затем напрямую изменять значение внутри класса `Money`  — и всё это без ведома самого класса `Account` о произошедшем изменении.
 </br>
-
-Более того, использование паттерна Factory в данном случае представляется несколько избыточным, поскольку изменение набора поддерживаемых валют в классе `CurrencyConstants` влечет за собой необходимость внесения правок как в классы, содержащиеся в файле `Monies`, так и в класс `MoneyFactory`.
-
-![Рисунок 1: длинный список классов валютов](./Assets/classfamily.png)
 
 ## С применением Value Object:
 Он состоит из единственного константного класса — Money. Этот класс хранит тип валюты и сумму — два атрибута, являющихся константами. Изменение значения подразумевает создание нового объекта с этим новым значением. Это гарантирует, что никакие два объекта не будут иметь один и тот же адрес в памяти.
@@ -65,14 +60,14 @@ public final class Money {
         if (!this.isSameCurrency(amount)) {
             throw new IllegalArgumentException("Currency mismatch!");
         }
-        return new Money(this.getAmount() + amount.getAmount(), this.getCurrency());
+        return new Money(this.getAmount().add(amount.getAmount()), this.getCurrency());
     }
 
     public Money subtract(Money amount) {
         if (!this.isSameCurrency(amount)) {
             throw new IllegalArgumentException("Currency mismatch!");
         }
-        return new Money(this.getAmount() - amount.getAmount(), this.getCurrency());
+        return new Money(this.getAmount().subtract(amount.getAmount()), this.getCurrency());
     }
 }
 ```
@@ -80,10 +75,7 @@ public final class Money {
 Ниже представлена диаграмма классов применения Value Object
 ![Рисунок 2: Диаграмма классов второго применения](./Assets/classdiagram3.png)
 
-Этот подход обеспечивает инкапсуляцию в рамках ООП, одновременно решая проблему разрастания классов. Кроме того, сборщик мусора Java эффективно обрабатывает устаревшие объекты.
-
-## Заключение
-Использование Value Object и принципа immutability критически важно для финансовых систем. Это исключает побочные эффекты и «скрытые» изменения данных, обеспечивая потокобезопасность. Подход через композицию избавляет от разрастания классов и упрощает поддержку, а современная JVM эффективно оптимизирует создание короткоживущих объектов, гарантируя высокую производительность при максимальной надежности кода.
+Этот подход обеспечивает инкапсуляцию в рамках ООП. Кроме того, сборщик мусора Java эффективно обрабатывает устаревшие объекты.
 
 
 ## Сравнение подходов
@@ -92,7 +84,6 @@ public final class Money {
 | :--- | :--- | :--- |
 | **Изменяемость** | **Mutable** (изменяет состояние текущего объекта) | **Immutable** (создает новый объект при операциях) |
 | **Безопасность** | Риск побочных эффектов и "скрытых" изменений | Полная потокобезопасность и предсказуемость |
-| **Архитектура** | Избыточность (нужен отдельный класс на валюту) | Лаконичность (один класс для всех валют) |
 | **Расширяемость** | Сложно (нужно менять Factory и классы) | Легко (управление через константы данных) |
 | **Целостность** | Ссылки на объект могут привести к багам | Объект-значение невозможно повредить |
 | **Память** | Экономит объекты, но усложняет логику | Создает временные объекты (оптимально для GC) |
