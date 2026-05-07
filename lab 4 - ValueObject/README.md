@@ -54,8 +54,8 @@ public class CADMoney extends BaseMoney{
 
 ```java
 public final class Money {
-    private final long AMOUNT;
-    private final String CURRENCY;
+    private final long amount;
+    private final String currency;
 
     public Money(long amount, String currency) { //...
     }
@@ -78,7 +78,7 @@ public final class Money {
 ```
 
 Ниже представлена диаграмма классов применения Value Object
-![Рисунок 2: Диаграмма классов второго применения](./Assets/class%20diagram%202.png)
+![Рисунок 2: Диаграмма классов второго применения](./Assets/classdiagram3.png)
 
 Этот подход обеспечивает инкапсуляцию в рамках ООП, одновременно решая проблему разрастания классов. Кроме того, сборщик мусора Java эффективно обрабатывает устаревшие объекты.
 

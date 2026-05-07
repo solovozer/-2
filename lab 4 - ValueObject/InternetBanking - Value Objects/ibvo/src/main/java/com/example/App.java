@@ -2,6 +2,8 @@ package com.example;
 
 import io.javalin.Javalin;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -104,7 +106,7 @@ public class App
             
             pstmt.setString(1, account.getId());
             pstmt.setString(2, account.getOwner());
-            pstmt.setLong(3, account.getBalance().getAmount());
+            pstmt.setBigDecimal(3, account.getBalance().getAmount());
             pstmt.setString(4, account.getBalance().getCurrency());
             
             pstmt.executeUpdate();
@@ -146,14 +148,14 @@ public class App
     static class TransferRequest {
         public String fromId;
         public String toId;
-        public long amount;
+        public BigDecimal amount;
         public String currency;
     }
     
     static class CreateAccountRequest {
         public String id;
         public String name;
-        public long initialBalance;
+        public BigDecimal initialBalance;
         public String currency;
     }
     

@@ -1,7 +1,9 @@
 package com.example.Monies;
 
+import java.math.BigDecimal;
+
 public class CNYMoney extends BaseMoney{
-    public CNYMoney(long amount) {
+    public CNYMoney(BigDecimal amount) {
         super(amount);
     }
 

@@ -1,55 +1,61 @@
 package com.example;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public final class Money {
-    private final long AMOUNT;
-    private final String CURRENCY;
+    private final BigDecimal amount;
+    private final String currency;
 
-    public Money(long amount, String currency) {
-        if (amount < 0) {
+    public Money(BigDecimal amount, String currency) {
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Amount cannot be negative");
         }
         if (currency == null || !CurrencyConstants.SUPPORTED_CURRENCIES.contains(currency)) {
             throw new IllegalArgumentException("Unsupported or null currency");
         }
-        this.AMOUNT = amount;
-        this.CURRENCY = currency;
+        this.amount = amount;
+        this.currency = currency;
     }
 
     public String getFormattedAmount() {
-        return String.format("%.2f %s", AMOUNT / 100.0, CURRENCY);
+        return String.format("%.2f %s", amount.divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_UP), currency);
     }
 
-    public long getAmount() {
-        return AMOUNT;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public String getCurrency() { return CURRENCY; }
+    public String getCurrency() { return currency; }
     
     public boolean isSameCurrency(Money other) {
-        return this.CURRENCY.equals(other.CURRENCY);
+        return this.currency.equals(other.currency);
     }
 
     public Money add(Money amount) {
         if (!this.isSameCurrency(amount)) {
             throw new IllegalArgumentException("Currency mismatch!");
         }
-        return new Money(this.getAmount() + amount.getAmount(), this.getCurrency());
+        return new Money(this.getAmount().add(amount.getAmount()), this.getCurrency());
     }
 
     public Money subtract(Money amount) {
         if (!this.isSameCurrency(amount)) {
             throw new IllegalArgumentException("Currency mismatch!");
         }
-        return new Money(this.getAmount() - amount.getAmount(), this.getCurrency());
+        return new Money(this.getAmount().subtract(amount.getAmount()), this.getCurrency());
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Money money = (Money) o;
-        return AMOUNT == money.AMOUNT && Objects.equals(CURRENCY, money.CURRENCY);
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Money money = (Money) obj;
+        return amount.compareTo(money.amount) == 0 && Objects.equals(currency, money.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(amount, currency);
     }
 }

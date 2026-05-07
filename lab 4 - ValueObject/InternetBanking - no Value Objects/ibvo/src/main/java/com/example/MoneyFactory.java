@@ -1,12 +1,14 @@
 package com.example;
 
+import java.math.BigDecimal;
+
 import com.example.Monies.*;
 
 public final class MoneyFactory {
     private MoneyFactory() {
     }
 
-    public static BaseMoney create(long amount, String currency) {
+    public static BaseMoney create(BigDecimal amount, String currency) {
         if (currency == null || !CurrencyConstants.SUPPORTED_CURRENCIES.contains(currency)) {
             throw new IllegalArgumentException("Unsupported or null currency");
         }

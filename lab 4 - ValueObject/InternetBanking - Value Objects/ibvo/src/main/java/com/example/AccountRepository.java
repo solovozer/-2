@@ -1,5 +1,6 @@
 package com.example;
 
+import java.math.BigDecimal;
 import java.sql.*;
 
 public class AccountRepository {
@@ -15,7 +16,7 @@ public class AccountRepository {
             
             if (rs.next()) {
                 String name = rs.getString("name");
-                long amount = rs.getLong("balance_amount");
+                BigDecimal amount = rs.getBigDecimal("balance_amount");
                 String currency = rs.getString("balance_currency");
                 Money balance = new Money(amount, currency);
                 return new Account(id, name, balance);
@@ -32,7 +33,7 @@ public class AccountRepository {
         try (Connection conn = DatabaseConfig.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setLong(1, account.getBalance().getAmount());
+            pstmt.setBigDecimal(1, account.getBalance().getAmount());
             pstmt.setString(2, account.getBalance().getCurrency());
             pstmt.setString(3, account.getId());
             

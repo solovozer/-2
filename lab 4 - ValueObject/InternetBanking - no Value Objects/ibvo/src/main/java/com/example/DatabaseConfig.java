@@ -42,7 +42,7 @@ public class DatabaseConfig {
             
             pstmt.setString(1, fromId);
             pstmt.setString(2, toId);
-            pstmt.setLong(3, money.getAmount()); 
+            pstmt.setBigDecimal(3, money.getAmount()); 
             pstmt.setString(4, money.getCurrency());
             
             pstmt.executeUpdate();
