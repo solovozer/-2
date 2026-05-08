@@ -53,6 +53,7 @@ public final class Money {
         Money money = (Money) obj;
         return amount.compareTo(money.amount) == 0 && Objects.equals(currency, money.currency);
     }
+    
 
     @Override
     public int hashCode() {

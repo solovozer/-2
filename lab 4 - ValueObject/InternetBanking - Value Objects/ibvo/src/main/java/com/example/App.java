@@ -37,7 +37,6 @@ public class App
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
                 
-                // Check if account already exists
                 Account existingAccount = repo.findById(request.id);
                 if (existingAccount != null) {
                     ctx.status(409).result("Account with Name '" + request.id + "' already exists");
@@ -46,7 +45,6 @@ public class App
                 
                 Money initialBalance = new Money(request.initialBalance, request.currency);
                 Account account = new Account(request.id, request.name, initialBalance);
-                // Save to DB
                 saveAccount(account);
                 ctx.result("Account created");
             } catch (Exception e) {
@@ -54,7 +52,7 @@ public class App
             }
         });
         
-        // Endpoint to get account balance
+        //Account balance
         app.get("/accounts/{id}", ctx -> {
             String id = ctx.pathParam("id");
             Account account = repo.findById(id);
@@ -65,7 +63,7 @@ public class App
             }
         });
         
-        // Endpoint to get account transactions
+        //Account transactions
         app.get("/accounts/{id}/transactions", ctx -> {
             String id = ctx.pathParam("id");
             DatabaseConfig db = new DatabaseConfig();
@@ -73,7 +71,7 @@ public class App
             ctx.json(transactions);
         });
         
-        // Endpoint to transfer money
+        //Transfer money
         app.post("/transfer", ctx -> {
             try {
                 TransferRequest request = objectMapper.readValue(ctx.body(), TransferRequest.class);
@@ -85,7 +83,7 @@ public class App
             }
         });
         
-        // Endpoint to wipe all database data
+        //Wipe database
         app.post("/api/admin/487135rrdbfe854y/wipe", ctx -> {
             try {
                 wipeDatabase();

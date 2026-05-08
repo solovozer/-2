@@ -1,6 +1,5 @@
 package com.example;
 
-import java.util.Objects;
 import java.math.BigDecimal;
 
 public class Money {
@@ -45,12 +44,9 @@ public class Money {
         this.amount = this.amount.subtract(other.getAmount());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Money money = (Money) obj;
-        return amount.compareTo(money.amount) == 0 && Objects.equals(getCurrency(), money.getCurrency());
+    public boolean equals(Money other) {
+        if (other == null) return false;
+        return this.amount.compareTo(other.amount) == 0 && this.currency.equals(other.currency);
     }
 
 
