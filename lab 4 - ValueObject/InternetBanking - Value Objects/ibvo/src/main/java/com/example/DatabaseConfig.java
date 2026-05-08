@@ -80,6 +80,33 @@ public class DatabaseConfig {
         return transactions;
     }
 
+    public java.util.List<TransactionRecord> getAllTransactionHistory() {
+        String sql = "SELECT id, from_id, to_id, amount, currency, timestamp FROM transactions ORDER BY timestamp DESC";
+        
+        java.util.List<TransactionRecord> transactions = new java.util.ArrayList<>();
+        
+        try (Connection conn = DatabaseConfig.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                TransactionRecord record = new TransactionRecord(
+                    rs.getInt("id"),
+                    rs.getString("from_id"),
+                    rs.getString("to_id"),
+                    rs.getLong("amount"),
+                    rs.getString("currency"),
+                    rs.getString("timestamp")
+                );
+                transactions.add(record);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.err.println(transactions.size());
+        return transactions;
+    }
+
     public static class TransactionRecord {
         public final int id;
         public final String fromId;

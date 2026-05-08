@@ -30,7 +30,9 @@ public class App
         app.get("/create-account", ctx -> ctx.html(serveFile("src/main/resources/static/templates/create-account.html")));
         app.get("/transfer-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transfer-money.html")));
         app.get("/account-info", ctx -> ctx.html(serveFile("src/main/resources/static/templates/account-info.html")));
-        
+        app.get("/transaction-history", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transaction-history.html")));
+
+
         app.get("/currencies", ctx -> ctx.json(CurrencyConstants.SUPPORTED_CURRENCIES));
         
         app.post("/accounts", ctx -> {
@@ -68,6 +70,12 @@ public class App
             String id = ctx.pathParam("id");
             DatabaseConfig db = new DatabaseConfig();
             java.util.List<DatabaseConfig.TransactionRecord> transactions = db.getTransactionsForAccount(id);
+            ctx.json(transactions);
+        });
+
+        app.get("/accounts/transactions/ALL", ctx -> {
+            DatabaseConfig db = new DatabaseConfig();
+            java.util.List<DatabaseConfig.TransactionRecord> transactions = db.getAllTransactionHistory();
             ctx.json(transactions);
         });
         
