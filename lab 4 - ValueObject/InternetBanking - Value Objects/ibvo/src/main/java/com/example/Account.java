@@ -1,7 +1,5 @@
 package com.example;
 
-import com.example.Record.AccountRecord;
-
 public class Account {
     private final String id;
     private final User owner;
@@ -13,10 +11,10 @@ public class Account {
         this.balance = initialBalance;
     }
 
-    public Account(AccountRecord ar) {
-        this.id = ar.id;
-        this.owner = new User(ar.ownerName, ar.ownerEmail, ar.ownerUsername, ar.ownerPassword);
-        this.balance = new Money(ar.balanceAmount, ar.balanceCurrency);
+    public Account(User user, String id, Money balance) {
+        this.id = id;
+        this.owner = user;
+        this.balance = balance;
     }
 
     public String getCurrency() {

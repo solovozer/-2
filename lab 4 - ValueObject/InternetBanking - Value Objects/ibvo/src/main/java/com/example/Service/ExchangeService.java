@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 import com.example.Money;
 
 //SUPPORTED_CURRENCIES = Arrays.asList("AUD", "CAD", "CNY", "EUR", "JPY", "RUB", "USD", "VND")
-public class ExchangeServiceStub {
+public class ExchangeService {
     private static final Money[] EXCHANGE_RATES = new Money[] {
         new Money(new BigDecimal("1.30"), "AUD"),
         new Money(new BigDecimal("1.25"), "CAD"),

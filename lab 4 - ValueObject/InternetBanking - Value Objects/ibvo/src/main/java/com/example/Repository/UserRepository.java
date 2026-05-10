@@ -18,8 +18,7 @@ public class UserRepository {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String username = rs.getString("username");
-                String password = rs.getString("password");
-                return new UserRecord(id, name, email, username, password);
+                return new UserRecord(id, name, email, username);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -40,8 +39,7 @@ public class UserRepository {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
-                String password = rs.getString("password");
-                return new UserRecord(id, name, email, username, password);
+                return new UserRecord(id, name, email, username);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

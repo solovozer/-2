@@ -8,15 +8,13 @@ public class User {
     private String username;
     private String name;
     private String email;
-    private String password;
     private List<Account> accounts;
 
-    public User(String name, String email, String username, String password) {
+    public User(String name, String email, String username) {
         this.id = java.util.UUID.randomUUID().toString();
         this.name = name;
         this.email = email;
         this.username = username;
-        this.password = password;
     }
 
     public User(UserRecord ur) {
@@ -24,7 +22,6 @@ public class User {
         this.name = ur.name;
         this.email = ur.email;
         this.username = ur.username;
-        this.password = ur.password;
     }
 
     public String getId() {
@@ -42,11 +39,6 @@ public class User {
     public String getUsername() {
         return username;
     }
-    
-    public String getPassword() {
-        return password;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -57,10 +49,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Account> getAccounts() {

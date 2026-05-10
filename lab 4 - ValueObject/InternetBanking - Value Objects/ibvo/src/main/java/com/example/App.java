@@ -18,8 +18,9 @@ public class App
     {
         DatabaseConfig.initialize();
         
-        AccountRepository repo = new AccountRepository();
-        TransferService transferService = new TransferService(repo);
+        AccountRepository accountRepo = new AccountRepository();
+        UserRepository userRepo = new UserRepository();
+        TransferService transferService = new TransferService(accountRepo, userRepo);
         
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add(staticFiles -> {
@@ -140,7 +141,6 @@ public class App
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getUsername());
-            pstmt.setString(5, user.getPassword());
             
             pstmt.executeUpdate();
         } catch (java.sql.SQLException e) {
@@ -155,7 +155,7 @@ public class App
              java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setString(1, account.getId());
-            pstmt.setString(2, account.getOwner());
+            pstmt.setString(2, account.getOwner().getId());
             pstmt.setBigDecimal(3, account.getBalance().getAmount());
             pstmt.setString(4, account.getBalance().getCurrency());
             
