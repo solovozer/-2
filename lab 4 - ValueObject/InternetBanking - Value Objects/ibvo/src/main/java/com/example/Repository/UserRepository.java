@@ -1,12 +1,12 @@
 package com.example.Repository;
 
 import com.example.DatabaseConfig;
-import com.example.Record.UserRecord;
+import com.example.User;
 import java.sql.*;
 
 public class UserRepository {
-    public UserRecord findById(String id) {
-        String sql = "SELECT id, name, email, username FROM users WHERE id = ?";
+    public User findById(String id) {
+        String sql = "SELECT id, name, email, username, password FROM users WHERE id = ?";
         
         try (Connection conn = DatabaseConfig.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -18,7 +18,8 @@ public class UserRepository {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String username = rs.getString("username");
-                return new UserRecord(id, name, email, username);
+                String password = rs.getString("password");
+                return new User(id, name, email, username, password);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -26,8 +27,8 @@ public class UserRepository {
         return null;
     }
 
-    public UserRecord findByUsername(String username) {
-        String sql = "SELECT id, name, email, username FROM users WHERE username = ?";
+    public User findByUsername(String username) {
+        String sql = "SELECT id, name, email, username, password FROM users WHERE username = ?";
         
         try (Connection conn = DatabaseConfig.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -39,7 +40,8 @@ public class UserRepository {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
-                return new UserRecord(id, name, email, username);
+                String password = rs.getString("password");
+                return new User(id, name, email, username, password); // Use package-private constructor
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

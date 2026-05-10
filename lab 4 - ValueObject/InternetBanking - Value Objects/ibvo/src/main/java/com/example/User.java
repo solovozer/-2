@@ -1,27 +1,33 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
-import com.example.Record.UserRecord;
 
 public class User {
     private final String id;
     private String username;
     private String name;
     private String email;
+    private String password;
     private List<Account> accounts;
 
-    public User(String name, String email, String username) {
+    public User(String name, String email, String username, String password) {
         this.id = java.util.UUID.randomUUID().toString();
         this.name = name;
         this.email = email;
         this.username = username;
+        this.password = password;
+        this.accounts = new ArrayList<>();
     }
 
-    public User(UserRecord ur) {
-        this.id = ur.id;
-        this.name = ur.name;
-        this.email = ur.email;
-        this.username = ur.username;
+    // Package-private constructor for reconstructing from database (uses existing ID)
+    public User(String id, String name, String email, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.accounts = new ArrayList<>();
     }
 
     public String getId() {
@@ -39,6 +45,11 @@ public class User {
     public String getUsername() {
         return username;
     }
+    
+    public String getPassword() {
+        return password;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -51,13 +62,20 @@ public class User {
         this.username = username;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public List<Account> getAccounts() {
         return accounts;
     }
 
-    public void createAccount(Money initialBalance) {
-        Account account = new Account(this, initialBalance);
-        this.accounts.add(account);
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 
+    public void createAccount(Money initialBalance) {
+        Account account = new Account(java.util.UUID.randomUUID().toString(), this.id, initialBalance);
+        this.accounts.add(account);
+    }
 }

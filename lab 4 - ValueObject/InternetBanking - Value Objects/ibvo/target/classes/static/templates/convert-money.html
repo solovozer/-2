@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currency Converter</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Currency Converter</h1>
+  </header>
+  <main>
+    <div class="card">
+      <form id="convert-form">
+        <label for="amount">Amount</label>
+        <input id="amount" name="amount" type="number" min="0" step="0.01" required />
+
+        <label for="sourceCurrency">Source Currency</label>
+        <select id="sourceCurrency" name="sourceCurrency" required>
+          <!-- Options populated by JavaScript -->
+        </select>
+
+        <label for="targetCurrency">Target Currency</label>
+        <select id="targetCurrency" name="targetCurrency" required>
+          <!-- Options populated by JavaScript -->
+        </select>
+
+        <button type="submit">Convert Currency</button>
+      </form>
+      
+      <div id="result" class="result" style="display:none">
+        <h3>Conversion Result:</h3>
+        <p id="conversion-result"></p>
+      </div>
+      
+      <div id="error-message" class="error" style="display:none"></div>
+    </div>
+    <div class="page-links">
+      <a href="/">Back to Home</a>
+    </div>
+  </main>
+  <footer>Simple Bank demo</footer>
+
+  <script>
+    // Load currencies when page loads
+    document.addEventListener('DOMContentLoaded', async () => {
+      const sourceSelect = document.getElementById('sourceCurrency');
+      const targetSelect = document.getElementById('targetCurrency');
+
+      try {
+        const response = await fetch('/currencies');
+        const currencies = await response.json();
+
+        currencies.forEach(currency => {
+          const sourceOption = document.createElement('option');
+          sourceOption.value = currency;
+          sourceOption.textContent = currency;
+          sourceSelect.appendChild(sourceOption);
+
+          const targetOption = document.createElement('option');
+          targetOption.value = currency;
+          targetOption.textContent = currency;
+          targetSelect.appendChild(targetOption);
+        });
+      } catch (error) {
+        console.error('Error loading currencies:', error);
+      }
+    });
+
+    document.getElementById('convert-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const amount = parseFloat(document.getElementById('amount').value);
+      const sourceCurrency = document.getElementById('sourceCurrency').value;
+      const targetCurrency = document.getElementById('targetCurrency').value;
+      
+      const resultDiv = document.getElementById('result');
+      const errorMessage = document.getElementById('error-message');
+      resultDiv.style.display = 'none';
+      errorMessage.style.display = 'none';
+
+      try {
+        const response = await fetch('/convert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount, sourceCurrency, targetCurrency })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          document.getElementById('conversion-result').innerHTML = 
+            `${data.originalAmount} → ${data.convertedAmount} ${data.targetCurrency}`;
+          resultDiv.style.display = 'block';
+        } else {
+          const errorText = await response.text();
+          errorMessage.textContent = `Error: ${errorText}`;
+          errorMessage.style.display = 'block';
+        }
+      } catch (error) {
+        errorMessage.textContent = `Network Error: ${error.message}`;
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

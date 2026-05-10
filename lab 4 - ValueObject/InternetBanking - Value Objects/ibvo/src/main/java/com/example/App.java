@@ -5,11 +5,13 @@ import io.javalin.Javalin;
 import com.example.Repository.AccountRepository;
 import com.example.Repository.UserRepository;
 import com.example.Service.TransferService;
+import com.example.Service.ExchangeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 
 public class App 
@@ -20,7 +22,8 @@ public class App
         
         AccountRepository accountRepo = new AccountRepository();
         UserRepository userRepo = new UserRepository();
-        TransferService transferService = new TransferService(accountRepo, userRepo);
+        TransferService transferService = new TransferService(accountRepo);
+        ExchangeService exchangeService = new ExchangeService();
         
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add(staticFiles -> {
@@ -66,14 +69,26 @@ public class App
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
                 
-                Account existingAccount = repo.findById(request.id);
+                // Check if the user exists by username (we'll need to pass username somehow)
+                // Since we don't have the username in the request, we need to modify our approach
+                // For now, let's assume we're getting userId instead of username
+                User user = userRepo.findById(request.userId); // assuming we add userId to request
+                
+                if (user == null) {
+                    ctx.status(404).result("User not found. Please create a user first.");
+                    return;
+                }
+                
+                // Check if account with given ID already exists using repository
+                Account existingAccount = accountRepo.findById(request.id);
                 if (existingAccount != null) {
-                    ctx.status(409).result("Account with Name '" + request.id + "' already exists");
+                    ctx.status(409).result("Account with ID '" + request.id + "' already exists");
                     return;
                 }
                 
                 Money initialBalance = new Money(request.initialBalance, request.currency);
-                Account account = new Account(request.id, request.name, initialBalance);
+                // Create a new Account with the provided ID and initial balance linked to the user
+                Account account = new Account(request.id, user.getId(), initialBalance);
                 saveAccount(account);
                 ctx.result("Account created");
             } catch (Exception e) {
@@ -82,13 +97,16 @@ public class App
         });
         
         //Account balance
-        app.get("/accounts/{id}", ctx -> {
+        app.get("/users/{id}", ctx -> {
             String id = ctx.pathParam("id");
-            Account account = repo.findById(id);
-            if (account != null) {
-                ctx.json(new AccountResponse(account.getId(), account.getOwner(), account.getBalance().getFormattedAmount()));
+            User user = userRepo.findById(id);
+            if (user != null) {
+                // Load accounts for this user
+                List<Account> accounts = accountRepo.getAllAccountsFromUser(id);
+                user.setAccounts(accounts);
+                ctx.json(user);
             } else {
-                ctx.status(404).result("Account not found");
+                ctx.status(404).result("User not found");
             }
         });
         
@@ -96,7 +114,8 @@ public class App
         app.get("/accounts/{id}/transactions", ctx -> {
             String id = ctx.pathParam("id");
             DatabaseConfig db = new DatabaseConfig();
-            java.util.List<DatabaseConfig.TransactionRecord> transactions = db.getTransactionsForAccount(id);
+            Account account = accountRepo.findById(id);
+            java.util.List<DatabaseConfig.TransactionRecord> transactions = db.getTransactionsForAccount(account);
             ctx.json(transactions);
         });
 
@@ -115,6 +134,22 @@ public class App
                 ctx.result("Transfer successful");
             } catch (Exception e) {
                 ctx.status(400).result("Transfer failed: " + e.getMessage());
+            }
+        });
+        
+        // Currency conversion endpoint
+        app.post("/convert", ctx -> {
+            try {
+                ConvertRequest request = objectMapper.readValue(ctx.body(), ConvertRequest.class);
+                Money originalAmount = new Money(request.amount, request.sourceCurrency);
+                Money convertedAmount = exchangeService.convert(originalAmount, request.targetCurrency);
+                ctx.json(new ConvertResponse(
+                    originalAmount.getFormattedAmount(),
+                    convertedAmount.getFormattedAmount(),
+                    request.targetCurrency
+                ));
+            } catch (Exception e) {
+                ctx.status(400).result("Conversion failed: " + e.getMessage());
             }
         });
         
@@ -155,7 +190,7 @@ public class App
              java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setString(1, account.getId());
-            pstmt.setString(2, account.getOwner().getId());
+            pstmt.setString(2, account.getUserId());
             pstmt.setBigDecimal(3, account.getBalance().getAmount());
             pstmt.setString(4, account.getBalance().getCurrency());
             
@@ -210,18 +245,37 @@ public class App
     }
 
     static class CreateAccountRequest {
-        public String name;
+        public String id;
+        public String userId; // Added userId field
         public BigDecimal initialBalance;
         public String currency;
     }
     
     static class AccountResponse {
-        public User owner;
+        public String owner;
         public String balance;
         
-        public AccountResponse(User owner, String balance) {
+        public AccountResponse(String owner, String balance) {
             this.owner = owner;
             this.balance = balance;
+        }
+    }
+
+    static class ConvertRequest {
+        public BigDecimal amount;
+        public String sourceCurrency;
+        public String targetCurrency;
+    }
+
+    static class ConvertResponse {
+        public String originalAmount;
+        public String convertedAmount;
+        public String targetCurrency;
+
+        public ConvertResponse(String originalAmount, String convertedAmount, String targetCurrency) {
+            this.originalAmount = originalAmount;
+            this.convertedAmount = convertedAmount;
+            this.targetCurrency = targetCurrency;
         }
     }
 }

@@ -13,14 +13,14 @@
   <main>
     <div class="card">
       <form id="create-account-form">
-        <label for="id">Account Name</label>
-        <input id="id" name="id" required />
+        <label for="userId">User ID</label>
+        <input id="userId" name="userId" required placeholder="Enter user ID" />
 
-        <label for="name">Owner Name</label>
-        <input id="name" name="name" required />
+        <label for="id">Account ID</label>
+        <input id="id" name="id" required placeholder="Unique account identifier" />
 
-        <label for="amount">Initial Balance</label>
-        <input id="amount" name="amount" type="number" min="0" step="0.01" required />
+        <label for="initialBalance">Initial Balance</label>
+        <input id="initialBalance" name="initialBalance" type="number" min="0" step="0.01" required />
 
         <label for="currency">Currency</label>
         <select id="currency" name="currency" required>
@@ -33,6 +33,7 @@
     </div>
     <div class="page-links">
       <a href="/">Back to Home</a>
+      <a href="/create-user">Create User</a>
     </div>
   </main>
   <footer>Simple Bank demo</footer>
@@ -64,9 +65,9 @@
       message.style.display = 'none';
 
       const body = {
+        userId: form.userId.value.trim(),
         id: form.id.value.trim(),
-        name: form.name.value.trim(),
-        initialBalance: Math.round(Number(form.amount.value) * 100), // Convert dollars to cents
+        initialBalance: parseFloat(form.initialBalance.value), // Send decimal amount directly
         currency: form.currency.value,
       };
 

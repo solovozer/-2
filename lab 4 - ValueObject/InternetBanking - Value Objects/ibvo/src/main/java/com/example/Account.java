@@ -1,19 +1,14 @@
 package com.example;
 
+
 public class Account {
-    private final String id;
-    private final User owner;
+    private String id;
+    private String userId;
     private Money balance;
 
-    public Account(User owner, Money initialBalance) {
-        this.id = java.util.UUID.randomUUID().toString();
-        this.owner = owner;
-        this.balance = initialBalance;
-    }
-
-    public Account(User user, String id, Money balance) {
+    public Account(String id, String userId, Money balance) {
         this.id = id;
-        this.owner = user;
+        this.userId = userId;
         this.balance = balance;
     }
 
@@ -34,5 +29,5 @@ public class Account {
 
     public Money getBalance() { return balance; }
     public String getId() { return id; }
-    public User getOwner() { return owner; }
+    public String getUserId() { return userId; }
 }

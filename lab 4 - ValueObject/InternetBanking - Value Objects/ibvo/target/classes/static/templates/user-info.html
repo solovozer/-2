@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Info</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>User Info</h1>
+  </header>
+  <main>
+    <div class="card">
+      <form id="user-info-form">
+        <label for="userId">User ID</label>
+        <input id="userId" name="userId" required />
+        <button type="submit">Find User</button>
+      </form>
+      <div id="error-message" class="result error" style="display:none"></div>
+    </div>
+
+    <div id="user-details" style="display:none">
+      <div class="card">
+        <h2>User Details</h2>
+        <p><strong>ID:</strong> <span id="display-id"></span></p>
+        <p><strong>Name:</strong> <span id="display-name"></span></p>
+        <p><strong>Email:</strong> <span id="display-email"></span></p>
+        <p><strong>Username:</strong> <span id="display-username"></span></p>
+      </div>
+
+      <div class="card">
+        <h2>Associated Accounts</h2>
+        <div id="accounts-list">
+          <p>No accounts found for this user.</p>
+        </div>
+      </div>
+
+      <div class="page-links">
+        <a href="/">Back to Home</a>
+      </div>
+    </div>
+  </main>
+  <footer>Simple Bank demo</footer>
+
+  <script>
+    const form = document.getElementById('user-info-form');
+    const errorMessage = document.getElementById('error-message');
+    const userDetails = document.getElementById('user-details');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      errorMessage.style.display = 'none';
+      userDetails.style.display = 'none';
+
+      const userId = form.userId.value.trim();
+
+      try {
+        // Fetch user info
+        const userResponse = await fetch(`/users/${userId}`);
+        if (!userResponse.ok) {
+          throw new Error('User not found');
+        }
+        const userData = await userResponse.json();
+
+        // Display user details
+        document.getElementById('display-id').textContent = userData.id;
+        document.getElementById('display-name').textContent = userData.name || 'N/A';
+        document.getElementById('display-email').textContent = userData.email || 'N/A';
+        document.getElementById('display-username').textContent = userData.username || 'N/A';
+
+        // If we have accounts, display them
+        const accountsList = document.getElementById('accounts-list');
+        if (userData.accounts && userData.accounts.length > 0) {
+          accountsList.innerHTML = userData.accounts.map(account => `
+            <div class="card" style="margin: 10px 0; padding: 10px; background-color: #f8f9fa;">
+              <p><strong>Account ID:</strong> ${account.id}</p>
+              <p><strong>Balance:</strong> ${account.balance.formattedAmount}</p>
+            </div>
+          `).join('');
+        } else {
+          accountsList.innerHTML = '<p>No accounts found for this user.</p>';
+        }
+
+        userDetails.style.display = 'block';
+      } catch (error) {
+        errorMessage.textContent = `Error: ${error.message}`;
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
