@@ -13,8 +13,16 @@ public class DatabaseConfig {
         String userTable = "CREATE TABLE IF NOT EXISTS users (" +
                 "id TEXT PRIMARY KEY, " +
                 "name TEXT, " +
+                "email TEXT, " +
+                "username TEXT, " +
+                "password TEXT)";
+
+        String accountTable = "CREATE TABLE IF NOT EXISTS accounts (" +
+                "id TEXT PRIMARY KEY, " +
+                "user_id TEXT, " +
                 "balance_amount INTEGER, " +
-                "balance_currency TEXT)";
+                "balance_currency TEXT, " +
+                "FOREIGN KEY(user_id) REFERENCES users(id))";
 
         String transTable = "CREATE TABLE IF NOT EXISTS transactions (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -26,6 +34,7 @@ public class DatabaseConfig {
 
         try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
             stmt.execute(userTable);
+            stmt.execute(accountTable);
             stmt.execute(transTable);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -49,7 +58,7 @@ public class DatabaseConfig {
         }
     }
 
-    public java.util.List<TransactionRecord> getTransactionsForAccount(String accountId) {
+    public java.util.List<TransactionRecord> getTransactionsForAccount(Account account) {
         String sql = "SELECT id, from_id, to_id, amount, currency, timestamp FROM transactions " +
                     "WHERE from_id = ? OR to_id = ? ORDER BY timestamp DESC";
         
@@ -58,8 +67,8 @@ public class DatabaseConfig {
         try (Connection conn = DatabaseConfig.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, accountId);
-            pstmt.setString(2, accountId);
+            pstmt.setString(1, account.getId());
+            pstmt.setString(2, account.getId());
             
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -103,7 +112,6 @@ public class DatabaseConfig {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.err.println(transactions.size());
         return transactions;
     }
 

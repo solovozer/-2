@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Create Account</h1>
+  </header>
+  <main>
+    <div class="card">
+      <form id="create-account-form">
+        <label for="id">Account Name</label>
+        <input id="id" name="id" required />
+
+        <label for="name">Owner Name</label>
+        <input id="name" name="name" required />
+
+        <label for="amount">Initial Balance</label>
+        <input id="amount" name="amount" type="number" min="0" step="0.01" required />
+
+        <label for="currency">Currency</label>
+        <select id="currency" name="currency" required>
+          <!-- Options populated by JavaScript -->
+        </select>
+
+        <button type="submit">Create Account</button>
+      </form>
+      <div id="message" class="result" style="display:none"></div>
+    </div>
+    <div class="page-links">
+      <a href="/">Back to Home</a>
+    </div>
+  </main>
+  <footer>Simple Bank demo</footer>
+
+  
+</body>
+</html>

@@ -1,6 +1,10 @@
 package com.example;
 
 import io.javalin.Javalin;
+
+import com.example.Repository.AccountRepository;
+import com.example.Repository.UserRepository;
+import com.example.Service.TransferService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.math.BigDecimal;
@@ -27,14 +31,36 @@ public class App
         ObjectMapper objectMapper = new ObjectMapper();
 
         app.get("/", ctx -> ctx.html(serveFile("src/main/resources/static/templates/index.html")));
+        app.get("/create-user", ctx -> ctx.html(serveFile("src/main/resources/static/templates/create-user.html")));
         app.get("/create-account", ctx -> ctx.html(serveFile("src/main/resources/static/templates/create-account.html")));
-        app.get("/transfer-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transfer-money.html")));
+        app.get("/user-info", ctx -> ctx.html(serveFile("src/main/resources/static/templates/user-info.html")));
         app.get("/account-info", ctx -> ctx.html(serveFile("src/main/resources/static/templates/account-info.html")));
+        app.get("/transfer-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transfer-money.html")));
+        app.get("/convert-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/convert-money.html")));
         app.get("/transaction-history", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transaction-history.html")));
 
 
         app.get("/currencies", ctx -> ctx.json(CurrencyConstants.SUPPORTED_CURRENCIES));
         
+        app.post("/users", ctx -> {
+            try {
+                CreateUserRequest request = objectMapper.readValue(ctx.body(), CreateUserRequest.class);
+                
+                User existingUser = new UserRepository().findByUsername(request.username);
+                if (existingUser != null) {
+                    ctx.status(409).result("Username '" + request.username + "' is already taken");
+                    return;
+                }
+                
+                User user = new User(request.name, request.email, request.username, request.password);
+                saveUser(user);
+                ctx.result("User created");
+            } catch (Exception e) {
+                ctx.status(400).result("Failed to create user: " + e.getMessage());
+            }
+        });
+
+
         app.post("/accounts", ctx -> {
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
@@ -103,9 +129,27 @@ public class App
         
         System.out.println("Server started on port 7000");
     }
+
+    private static void saveUser(User user) {
+        String sql = "INSERT INTO users(id, name, email, username, password) VALUES(?,?,?,?,?)";
+        
+        try (java.sql.Connection conn = DatabaseConfig.connect();
+             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, user.getId());
+            pstmt.setString(2, user.getName());
+            pstmt.setString(3, user.getEmail());
+            pstmt.setString(4, user.getUsername());
+            pstmt.setString(5, user.getPassword());
+            
+            pstmt.executeUpdate();
+        } catch (java.sql.SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     
     private static void saveAccount(Account account) {
-        String sql = "INSERT INTO users(id, name, balance_amount, balance_currency) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO accounts(id, user_id, balance_amount, balance_currency) VALUES(?,?,?,?)";
         
         try (java.sql.Connection conn = DatabaseConfig.connect();
              java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -158,20 +202,24 @@ public class App
         public String currency;
     }
     
+    static class CreateUserRequest {
+        public String name;
+        public String email;
+        public String username;
+        public String password;
+    }
+
     static class CreateAccountRequest {
-        public String id;
         public String name;
         public BigDecimal initialBalance;
         public String currency;
     }
     
     static class AccountResponse {
-        public String id;
-        public String owner;
+        public User owner;
         public String balance;
         
-        public AccountResponse(String id, String owner, String balance) {
-            this.id = id;
+        public AccountResponse(User owner, String balance) {
             this.owner = owner;
             this.balance = balance;
         }

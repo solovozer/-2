@@ -1,14 +1,22 @@
 package com.example;
 
+import com.example.Record.AccountRecord;
+
 public class Account {
     private final String id;
-    private final String owner;
+    private final User owner;
     private Money balance;
 
-    public Account(String id, String owner, Money initialBalance) {
-        this.id = id;
+    public Account(User owner, Money initialBalance) {
+        this.id = java.util.UUID.randomUUID().toString();
         this.owner = owner;
         this.balance = initialBalance;
+    }
+
+    public Account(AccountRecord ar) {
+        this.id = ar.id;
+        this.owner = new User(ar.ownerName, ar.ownerEmail, ar.ownerUsername, ar.ownerPassword);
+        this.balance = new Money(ar.balanceAmount, ar.balanceCurrency);
     }
 
     public String getCurrency() {
@@ -28,5 +36,5 @@ public class Account {
 
     public Money getBalance() { return balance; }
     public String getId() { return id; }
-    public String getOwner() { return owner; }
+    public User getOwner() { return owner; }
 }
