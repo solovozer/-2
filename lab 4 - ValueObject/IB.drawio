@@ -126,12 +126,6 @@
             <mxPoint x="600" y="-103" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="mZb6dIdo6uH-W2M6KcMp-8" value="+ getAmount() : Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="327" y="1016" width="250" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="mZb6dIdo6uH-W2M6KcMp-9" value="+ getCurrency() : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="327" y="1042" width="250" height="26" as="geometry" />
-        </mxCell>
         <mxCell id="QFMbaB3X--e5tnugwEc0-2" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="46" y="597" width="224" height="190" as="geometry" />
         </mxCell>
