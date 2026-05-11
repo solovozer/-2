@@ -16,20 +16,25 @@
       <h2>Start</h2>
       <p>Use the pages below to create accounts, transfer money, or check an account balance.</p>
       <div class="page-links">
+        <a href="/create-user">Create User</a>
         <a href="/create-account">Create Account</a>
         <a href="/transfer-money">Transfer Money</a>
-        <a href="/account-info">Account Info</a>
-        <a href="/transaction-history">Transaction History</a>
+        <a href="/user-info">User Info</a>
+        <a href="/convert-currency">Convert Currency</a>
+        <a href="/transaction-history">All Transactions</a>
+        <a href="/conversion-history">Exchange History</a>
       </div>
     </div>
     <div class="card">
       <h2>Quick API</h2>
       <p>Backend endpoints:</p>
       <ul>
-        <li><code>POST /accounts</code></li>
-        <li><code>GET /accounts/{name}</code></li>
-        <li><code>POST /transfer</code></li>
-        <li><code>GET /transaction-history</code></li>
+        <li><code>POST /users</code> - Create a new user</li>
+        <li><code>POST /accounts</code> - Create a new account</li>
+        <li><code>GET /accounts/{id}</code> - Get account info</li>
+        <li><code>POST /transfer</code> - Transfer money between accounts</li>
+        <li><code>POST /convert</code> - Convert currency</li>
+        <li><code>GET /currencies</code> - Get supported currencies</li>
       </ul>
     </div>
         <button id="wipe-db-btn" style="
@@ -64,23 +69,6 @@
   <footer>Simple Bank demo</footer>
 
   <script>
-    async function confirmWipe() {
-        if (confirm("Are you sure? This will delete all records permanently.")) {
-            try {
-                const response = await fetch('/wipe-database', { method: 'POST' });
-                const text = await response.text();
-                
-                if (response.ok) {
-                    alert("Database wiped successfully.");
-                } else {
-                    alert("Error wiping database: " + text);
-                }
-            } catch (error) {
-                alert("Error: " + error.message);
-            }
-        }
-    }
-
     const wipeBtn = document.getElementById('wipe-db-btn');
     const messageDiv = document.getElementById('wipe-message');
 

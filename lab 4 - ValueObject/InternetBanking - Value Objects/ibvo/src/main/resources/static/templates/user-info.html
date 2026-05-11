@@ -13,8 +13,8 @@
   <main>
     <div class="card">
       <form id="user-info-form">
-        <label for="userId">User ID</label>
-        <input id="userId" name="userId" required />
+        <label for="username">Username</label>
+        <input id="username" name="username" required />
         <button type="submit">Find User</button>
       </form>
       <div id="error-message" class="result error" style="display:none"></div>
@@ -30,15 +30,42 @@
       </div>
 
       <div class="card">
-        <h2>Associated Accounts</h2>
+        <h2>Your Accounts</h2>
         <div id="accounts-list">
-          <p>No accounts found for this user.</p>
+          <p>Loading accounts...</p>
         </div>
       </div>
 
-      <div class="page-links">
-        <a href="/">Back to Home</a>
+      <div id="account-details" style="display:none">
+        <div class="card">
+          <h2>Account Details</h2>
+          <p><strong>Account ID:</strong> <span id="account-id-display"></span></p>
+          <p><strong>Balance:</strong> <span id="account-balance-display" style="font-size: 24px; font-weight: bold; color: #1f6feb;"></span></p>
+        </div>
+
+        <div class="card">
+          <h2>Recent Transactions</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid #cbd5e1;">
+                <th style="text-align: left; padding: 10px; font-weight: 600;">From</th>
+                <th style="text-align: left; padding: 10px; font-weight: 600;">To</th>
+                <th style="text-align: right; padding: 10px; font-weight: 600;">Amount</th>
+                <th style="text-align: left; padding: 10px; font-weight: 600;">Date</th>
+              </tr>
+            </thead>
+            <tbody id="recent-transactions-body">
+              <tr>
+                <td colspan="4" style="text-align: center; padding: 20px; color: #6b7280;">Loading transactions...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+    </div>
+
+    <div class="page-links">
+      <a href="/">Back to Home</a>
     </div>
   </main>
   <footer>Simple Bank demo</footer>
@@ -47,19 +74,21 @@
     const form = document.getElementById('user-info-form');
     const errorMessage = document.getElementById('error-message');
     const userDetails = document.getElementById('user-details');
+    const accountDetails = document.getElementById('account-details');
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       errorMessage.style.display = 'none';
       userDetails.style.display = 'none';
+      accountDetails.style.display = 'none';
 
-      const userId = form.userId.value.trim();
+      const username = form.username.value.trim();
 
       try {
-        // Fetch user info
-        const userResponse = await fetch(`/users/${userId}`);
+        // Fetch user info by username
+        const userResponse = await fetch(`/users-by-username/${username}`);
         if (!userResponse.ok) {
-          throw new Error('User not found');
+          throw new Error(await userResponse.text());
         }
         const userData = await userResponse.json();
 
@@ -69,12 +98,12 @@
         document.getElementById('display-email').textContent = userData.email || 'N/A';
         document.getElementById('display-username').textContent = userData.username || 'N/A';
 
-        // If we have accounts, display them
+        // Display user's accounts
         const accountsList = document.getElementById('accounts-list');
         if (userData.accounts && userData.accounts.length > 0) {
           accountsList.innerHTML = userData.accounts.map(account => `
-            <div class="card" style="margin: 10px 0; padding: 10px; background-color: #f8f9fa;">
-              <p><strong>Account ID:</strong> ${account.id}</p>
+            <div class="card" style="margin: 10px 0; padding: 10px; background-color: #f8f9fa; cursor: pointer;" onclick="selectAccount('${account.id}')">
+              <p><strong>Account ID:</strong> ${account.id.substring(0, 8)}...</p>
               <p><strong>Balance:</strong> ${account.balance.formattedAmount}</p>
             </div>
           `).join('');
@@ -88,6 +117,40 @@
         errorMessage.style.display = 'block';
       }
     });
+    
+    async function selectAccount(accountId) {
+      try {
+        // Fetch account details
+        const accountResponse = await fetch(`/accounts/${accountId}`);
+        if (!accountResponse.ok) {
+          throw new Error('Account not found');
+        }
+        const accountData = await accountResponse.json();
+
+        // Show account details
+        document.getElementById('account-id-display').textContent = accountData.id;
+        document.getElementById('account-balance-display').textContent = accountData.balance;
+        
+        // Show recent transactions
+        const tbody = document.getElementById('recent-transactions-body');
+        if (accountData.transactions.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 20px; color: #6b7280;">No transactions yet</td></tr>';
+        } else {
+          tbody.innerHTML = accountData.transactions.map(t => `
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 10px;">${t.fromUsername || t.fromId.substring(0, 8) + '...'}</td>
+              <td style="padding: 10px;">${t.toUsername || t.toId.substring(0, 8) + '...'}</td>
+              <td style="padding: 10px; text-align: right;">${t.amount} ${t.currency}</td>
+              <td style="padding: 10px;">${new Date(t.timestamp).toLocaleString()}</td>
+            </tr>
+          `).join('');
+        }
+
+        document.getElementById('account-details').style.display = 'block';
+      } catch (error) {
+        console.error('Error loading account details:', error);
+      }
+    }
   </script>
 </body>
 </html>

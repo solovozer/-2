@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convert Currency</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Convert Currency</h1>
+  </header>
+  <main>
+    <div class="card">
+      <form id="convert-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" required placeholder="Input username"/>
+       
+        <label for="sourceCurrency">Source Currency</label>
+        <select id="sourceCurrency" name="sourceCurrency" class="currencyList" required>
+          <!-- Options populated by JavaScript -->
+        </select>
+
+        <label for="targetCurrency">Target Currency</label>
+        <select id="targetCurrency" name="targetCurrency" class="currencyList" required>
+          <!-- Options populated by JavaScript -->
+        </select>
+
+        <label for="amount">Amount</label>
+        <input id="amount" name="amount" type="number" min="0" step="0.01" required />
+
+        <button type="submit">Convert Currency</button>
+      </form>
+      <div id="message" class="result" style="display:none"></div>
+      <hr>
+
+      <!-- Subform for querying exchange rates -->
+      <h3>Query Current Exchange Rate</h3>
+      <form id="rate-query-form">
+        <label for="amountRate">Amount</label>
+        <input id="amountRate" name="amount" type="number" min="0" step="0.01" required />
+        
+        <label for="fromCurrencyRate">From Currency</label>
+        <select id="fromCurrencyRate" name="fromCurrencyRate" class="currencyList" required>
+          <!-- Options populated by JavaScript -->
+        </select>
+
+        <label for="toCurrencyRate">To Currency</label>
+        <select id="toCurrencyRate" name="toCurrencyRate" class="currencyList" required>
+          <!-- Options populated by JavaScript -->
+        </select>
+
+        <button type="submit">Get Exchange Rate</button>
+      </form>
+
+      <div id="rate-result" class="result" style="display:none">
+        <h3>Exchange Rate:</h3>
+        <p id="exchange-rate-value"></p>
+      </div>
+
+      <div id="error-message" class="error" style="display:none"></div>
+      <div class="page-links">
+        <a href="/">Back to Home</a>
+        <a href="/transfer-money">Transfer Money</a>
+      </div>
+  </main>
+  <footer>Simple Bank demo</footer>
+
+  <script>
+    async function loadCurrencies() {
+      try {
+        const response = await fetch('/currencies');
+        if (!response.ok) throw new Error('Failed to fetch');
+
+        const currencyList = await response.json();
+        const selectElements = document.querySelectorAll('.currencyList');
+
+        const fragment = document.createDocumentFragment();
+        currencyList.forEach(currency => {
+          fragment.appendChild(new Option(currency, currency));
+        });
+
+        selectElements.forEach(select => {
+          select.innerHTML = '';
+          select.appendChild(fragment.cloneNode(true));
+        });
+      } catch (error) {
+        console.error('Failed to load currencies:', error);
+      }
+    }
+
+    loadCurrencies();
+
+    // Conversion
+    document.getElementById('convert-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const amount = document.getElementById('amount').value;
+      const sourceCurrency = document.getElementById('sourceCurrency').value;
+      const targetCurrency = document.getElementById('targetCurrency').value;
+      const convertResult = document.getElementById('message');
+
+      
+      const body = {
+        username : username,
+        amount : amount,
+        sourceCurrency : sourceCurrency,
+        targetCurrency : targetCurrency,
+      };
+
+      const response = await fetch('/convert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const result = await response.text();
+      convertResult.textContent = result;
+      convertResult.className = 'result ' + (response.ok ? 'success' : 'error');
+      convertResult.style.display = 'block';
+    });
+
+  
+    // Exchange rate query
+    document.getElementById('rate-query-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fromCurrency = document.getElementById('fromCurrencyRate').value;
+      const toCurrency = document.getElementById('toCurrencyRate').value;
+      const amount = document.getElementById('amountRate').value;
+      const rateResultDiv = document.getElementById('rate-result');
+      const errorMessage = document.getElementById('error-message');
+
+      rateResultDiv.style.display = 'none';
+      errorMessage.style.display = 'none';
+
+      try {
+        const response = await fetch(`/exchange-rate?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'text/plain' }
+        });
+
+        if (response.ok) {
+          const resultText = await response.text();
+          document.getElementById('exchange-rate-value').textContent = resultText;
+          rateResultDiv.style.display = 'block';
+        } else {
+          const errorText = await response.text();
+          errorMessage.textContent = `Error: ${errorText}`;
+          errorMessage.style.display = 'block';
+        }
+      } catch (error) {
+        errorMessage.textContent = `Network Error: ${error.message}`;
+        errorMessage.style.display = 'block';
+      }
+    });
+
+  </script>
+</body>
+</html>

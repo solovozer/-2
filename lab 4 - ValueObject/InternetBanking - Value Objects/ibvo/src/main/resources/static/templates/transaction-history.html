@@ -52,8 +52,8 @@
                     } else {
                         tbody.innerHTML = transactions.map(t => `
                         <tr style="border-bottom: 1px solid #e5e7eb;">
-                            <td style="padding: 10px;">${t.fromId}</td>
-                            <td style="padding: 10px;">${t.toId}</td>
+                            <td style="padding: 10px;">${t.fromUsername || t.fromId.substring(0, 8) + '...'}</td>
+                            <td style="padding: 10px;">${t.toUsername || t.toId.substring(0, 8) + '...'}</td>
                             <td style="padding: 10px; text-align: right;">${t.amount} ${t.currency}</td>
                             <td style="padding: 10px;">${new Date(t.timestamp).toLocaleString()}</td>
                         </tr>

@@ -1,86 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transfer Money</title>
-  <link rel="stylesheet" href="/css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Money</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Transfer Money</h1>
-  </header>
-  <main>
-    <div class="card">
-      <form id="transfer-form">
-        <label for="fromId">From Account</label>
-        <input id="fromId" name="fromId" required />
+    <header>
+        <h1>Transfer Money</h1>
+    </header>
 
-        <label for="toId">To Account</label>
-        <input id="toId" name="toId" required />
+    <main>
+        <div class="card">      
+            <form id="transferForm">
+                <label for="senderUsername">Sender Username:</label>
+                <input type="text" id="senderUsername" name="senderUsername" required>
+                
+                <label for="receiverUsername">Receiver Username:</label>
+                <input type="text" id="receiverUsername" name="receiverUsername" required>
+                
+                <label for="amount">Amount:</label>
+                <input type="number" step="0.01" id="amount" name="amount" min="0.01" required>
+                
+                <label for="currency">Currency</label>
+                <select id="currency" name="currency" required>
+                    <!-- Options populated by JavaScript -->
+                </select>
 
-        <label for="amount">Amount</label>
-        <input id="amount" name="amount" type="number" min="0.01" step="0.01" required />
+                <button type="submit">Transfer Money</button>
+            </form>
+            <div id="message"></div>   
+        </div>
+        <div class="page-links">
+            <a href="/">Back to Home</a>
+            <a href="/convert-currency">Convert Currency</a>
+        </div>
+    </main>
+    
+    <script>
+        async function loadCurrencies() {
+            try {
+                const response = await fetch('/currencies');
+                if (!response.ok) throw new Error('Failed to fetch');
 
-        <label for="currency">Currency</label>
-        <select id="currency" name="currency" required>
-          <!-- Options populated by JavaScript -->
-        </select>
+                const currencyList = await response.json();
+                const currencySelect = document.getElementById('currency');
 
-        <button type="submit">Send Transfer</button>
-      </form>
-      <div id="message" class="result" style="display:none"></div>
-    </div>
-    <div class="page-links">
-      <a href="/">Back to Home</a>
-    </div>
-  </main>
-  <footer>Simple Bank demo</footer>
+                const fragment = document.createDocumentFragment();
+                currencyList.forEach(currency => {
+                    fragment.appendChild(new Option(currency, currency));
+                });
 
-  <script>
-    async function loadCurrencies() {
-      try {
-        const response = await fetch('/currencies');
-        const currencies = await response.json();
-        const select = document.getElementById('currency');
-        currencies.forEach(currency => {
-          const option = document.createElement('option');
-          option.value = currency;
-          option.textContent = currency;
-          select.appendChild(option);
+                currencySelect.innerHTML = '';
+                currencySelect.appendChild(fragment);
+            } catch (error) {
+                console.error('Failed to load currencies:', error);
+            }
+        }
+
+        loadCurrencies();
+
+        document.getElementById('transferForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const messageDiv = document.getElementById('message');
+            messageDiv.style.display = 'none';
+
+            const senderUsername = document.getElementById('senderUsername').value;
+            const receiverUsername = document.getElementById('receiverUsername').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const currency = document.getElementById('currency').value;
+
+            const body = {
+                fromUser: senderUsername.trim(),
+                toUser: receiverUsername.trim(),
+                amount: amount,
+                currency: currency,
+            };
+
+            const response = await fetch('/transfer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            });
+
+            const result = await response.text();
+            if (response.ok) {
+                messageDiv.textContent = result;
+                messageDiv.className = 'result success';
+                messageDiv.style.display = 'block';
+            } else {
+                messageDiv.textContent = result;
+                messageDiv.className = 'result error';
+                messageDiv.style.display = 'block';
+            }
         });
-      } catch (error) {
-        console.error('Failed to load currencies:', error);
-      }
-    }
-
-    loadCurrencies();
-
-    const form = document.getElementById('transfer-form');
-    const message = document.getElementById('message');
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      message.style.display = 'none';
-
-      const body = {
-        fromId: form.fromId.value.trim(),
-        toId: form.toId.value.trim(),
-        amount: parseFloat(form.amount.value), // Send decimal amount directly
-        currency: form.currency.value,
-      };
-
-      const response = await fetch('/transfer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-
-      const text = await response.text();
-      message.textContent = text;
-      message.className = 'result ' + (response.ok ? 'success' : 'error');
-      message.style.display = 'block';
-    });
-  </script>
+    </script>
 </body>
 </html>

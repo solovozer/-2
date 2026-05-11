@@ -19,7 +19,7 @@ public final class Money {
     }
 
     public String getFormattedAmount() {
-        return String.format("%.2f %s", amount.divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_UP), currency);
+        return String.format("%.2f %s", amount, currency);
     }
 
     public BigDecimal getAmount() {
@@ -44,6 +44,13 @@ public final class Money {
             throw new IllegalArgumentException("Currency mismatch!");
         }
         return new Money(this.getAmount().subtract(amount.getAmount()), this.getCurrency());
+    }
+    
+    public boolean isLessThan(Money other) {
+        if (!this.isSameCurrency(other)) {
+            throw new IllegalArgumentException("Cannot compare different currencies");
+        }
+        return this.getAmount().compareTo(other.getAmount()) < 0;
     }
 
     @Override

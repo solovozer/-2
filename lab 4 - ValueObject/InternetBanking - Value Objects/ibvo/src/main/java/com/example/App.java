@@ -23,8 +23,8 @@ public class App
         AccountRepository accountRepo = new AccountRepository();
         UserRepository userRepo = new UserRepository();
         TransferService transferService = new TransferService(accountRepo);
-        ExchangeService exchangeService = new ExchangeService();
-        
+        ExchangeService exchangeService = new ExchangeService(accountRepo);
+
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add(staticFiles -> {
                 staticFiles.directory = "/static";
@@ -40,8 +40,9 @@ public class App
         app.get("/user-info", ctx -> ctx.html(serveFile("src/main/resources/static/templates/user-info.html")));
         app.get("/account-info", ctx -> ctx.html(serveFile("src/main/resources/static/templates/account-info.html")));
         app.get("/transfer-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transfer-money.html")));
-        app.get("/convert-money", ctx -> ctx.html(serveFile("src/main/resources/static/templates/convert-money.html")));
+        app.get("/convert-currency", ctx -> ctx.html(serveFile("src/main/resources/static/templates/convert-currency.html")));
         app.get("/transaction-history", ctx -> ctx.html(serveFile("src/main/resources/static/templates/transaction-history.html")));
+        app.get("/conversion-history", ctx -> ctx.html(serveFile("src/main/resources/static/templates/conversion-history.html")));
 
 
         app.get("/currencies", ctx -> ctx.json(CurrencyConstants.SUPPORTED_CURRENCIES));
@@ -50,15 +51,15 @@ public class App
             try {
                 CreateUserRequest request = objectMapper.readValue(ctx.body(), CreateUserRequest.class);
                 
-                User existingUser = new UserRepository().findByUsername(request.username);
+                User existingUser = userRepo.findByUsername(request.username);
                 if (existingUser != null) {
-                    ctx.status(409).result("Username '" + request.username + "' is already taken");
+                    ctx.status(409).result("Username '" + request.username + "' is taken");
                     return;
                 }
                 
                 User user = new User(request.name, request.email, request.username, request.password);
                 saveUser(user);
-                ctx.result("User created");
+                ctx.result("User " + user.getUsername() + " created");
             } catch (Exception e) {
                 ctx.status(400).result("Failed to create user: " + e.getMessage());
             }
@@ -68,41 +69,52 @@ public class App
         app.post("/accounts", ctx -> {
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
-                
-                // Check if the user exists by username (we'll need to pass username somehow)
-                // Since we don't have the username in the request, we need to modify our approach
-                // For now, let's assume we're getting userId instead of username
-                User user = userRepo.findById(request.userId); // assuming we add userId to request
+                User user = userRepo.findByUsername(request.username);
                 
                 if (user == null) {
-                    ctx.status(404).result("User not found. Please create a user first.");
+                    ctx.status(404).result("User with username '" + request.username + "' not found");
                     return;
+                } else {
+                    try {
+                        Account currencyAccount = accountRepo.GetCurrencyAccount(user.getId(), request.currency);
+                        if (currencyAccount != null) {
+                            ctx.status(400).result("User already has an account with currency '" + request.currency + "'. Please choose a different currency.");
+                            return;
+                        }
+                    } catch (Exception e) {
+                        ctx.status(400).result("Invalid currency '" + request.currency + "'");
+                        return;
+                    }
                 }
-                
-                // Check if account with given ID already exists using repository
-                Account existingAccount = accountRepo.findById(request.id);
-                if (existingAccount != null) {
-                    ctx.status(409).result("Account with ID '" + request.id + "' already exists");
-                    return;
-                }
-                
+                String accountId = java.util.UUID.randomUUID().toString();
                 Money initialBalance = new Money(request.initialBalance, request.currency);
-                // Create a new Account with the provided ID and initial balance linked to the user
-                Account account = new Account(request.id, user.getId(), initialBalance);
+                Account account = new Account(accountId, user.getId(), initialBalance);
                 saveAccount(account);
-                ctx.result("Account created");
+                ctx.result(request.currency + " account created successfully");
             } catch (Exception e) {
                 ctx.status(400).result("Failed to create account: " + e.getMessage());
             }
         });
         
-        //Account balance
-        app.get("/users/{id}", ctx -> {
+        app.get("/accounts/{id}", ctx -> {
             String id = ctx.pathParam("id");
-            User user = userRepo.findById(id);
+            Account account = accountRepo.findById(id);
+            if (account != null) {
+                // Get recent transactions for this account
+                DatabaseConfig db = new DatabaseConfig();
+                List<DatabaseConfig.TransactionRecord> transactions = db.getRecentTransactionsForAccount(id, 10);
+                ctx.json(new AccountWithTransactionsResponse(account, transactions));
+            } else {
+                ctx.status(404).result("Account not found");
+            }
+        });
+
+        app.get("/users-by-username/{username}", ctx -> {
+            String username = ctx.pathParam("username");
+            User user = userRepo.findByUsername(username);
             if (user != null) {
                 // Load accounts for this user
-                List<Account> accounts = accountRepo.getAllAccountsFromUser(id);
+                List<Account> accounts = accountRepo.getAllAccountsFromUser(user.getId()); // Changed method name
                 user.setAccounts(accounts);
                 ctx.json(user);
             } else {
@@ -110,46 +122,112 @@ public class App
             }
         });
         
-        //Account transactions
         app.get("/accounts/{id}/transactions", ctx -> {
             String id = ctx.pathParam("id");
             DatabaseConfig db = new DatabaseConfig();
             Account account = accountRepo.findById(id);
-            java.util.List<DatabaseConfig.TransactionRecord> transactions = db.getTransactionsForAccount(account);
+            List<DatabaseConfig.TransactionRecord> transactions = db.getTransactionsForAccount(account);
             ctx.json(transactions);
         });
 
+
         app.get("/accounts/transactions/ALL", ctx -> {
             DatabaseConfig db = new DatabaseConfig();
-            java.util.List<DatabaseConfig.TransactionRecord> transactions = db.getAllTransactionHistory();
+            List<DatabaseConfig.TransactionRecord> transactions = db.getAllTransactionHistory();
             ctx.json(transactions);
         });
         
-        //Transfer money
+        //Transfer money - simplified to work with TransferService
         app.post("/transfer", ctx -> {
             try {
                 TransferRequest request = objectMapper.readValue(ctx.body(), TransferRequest.class);
+                
+                User fromUser = userRepo.findByUsername(request.fromUser);
+                User toUser = userRepo.findByUsername(request.toUser);
+                
+                if (fromUser == null) {
+                    ctx.status(404).result("Sender not found");
+                    return;
+                }
+                
+                if (toUser == null) {
+                    ctx.status(404).result("Recipient not found");
+                    return;
+                }
+                
+                Account fromAccount = accountRepo.GetCurrencyAccount(fromUser.getId(), request.currency);
+                Account toAccount = accountRepo.GetCurrencyAccount(toUser.getId(), request.currency);
+
+                if (fromAccount == null) { 
+                    ctx.status(404).result("Sender's " + request.currency + " account not found");
+                    return;
+                }
+
+                if (toAccount == null) {
+                    ctx.status(404).result("Recipient's " + request.currency + " account not found");
+                    return;
+                }
+
                 Money amount = new Money(request.amount, request.currency);
-                transferService.transfer(request.fromId, request.toId, amount);
+                try {
+                    transferService.transfer(fromAccount.getId(), toAccount.getId(), amount);
+                } catch (IllegalArgumentException e) {
+                    ctx.status(400).result("Not enough money in the sender's account. Please convert currency or reduce the transfer amount.");
+                }
                 ctx.result("Transfer successful");
             } catch (Exception e) {
                 ctx.status(400).result("Transfer failed: " + e.getMessage());
             }
         });
         
-        // Currency conversion endpoint
+
         app.post("/convert", ctx -> {
             try {
                 ConvertRequest request = objectMapper.readValue(ctx.body(), ConvertRequest.class);
+                User user = userRepo.findByUsername(request.username);
+                
+                if (user == null) {
+                    ctx.status(404).result("User not found");
+                    return;
+                }
+                
                 Money originalAmount = new Money(request.amount, request.sourceCurrency);
-                Money convertedAmount = exchangeService.convert(originalAmount, request.targetCurrency);
-                ctx.json(new ConvertResponse(
-                    originalAmount.getFormattedAmount(),
-                    convertedAmount.getFormattedAmount(),
-                    request.targetCurrency
-                ));
+                exchangeService.exchange(user.getId(), originalAmount, request.targetCurrency);
+                ctx.result("Successfully converted " + request.sourceCurrency + " to " + request.targetCurrency);
             } catch (Exception e) {
                 ctx.status(400).result("Conversion failed: " + e.getMessage());
+            }
+        }); 
+
+        app.get("/conversion-history/{username}", ctx -> {
+            String username = ctx.pathParam("username");
+            User user = userRepo.findByUsername(username);
+            if (user == null) {
+                ctx.status(404).result("User not found");
+                return;
+            }
+            DatabaseConfig db = new DatabaseConfig();
+            ctx.json(db.getConversionHistory(user.getId()));
+        });
+        
+        // Endpoint to get exchange rate
+        app.get("/exchange-rate", ctx -> {
+            try {
+                String sourceCurrency = ctx.queryParam("from");
+                String targetCurrency = ctx.queryParam("to");
+                BigDecimal amount = new BigDecimal(ctx.queryParam("amount"));
+                
+                if (sourceCurrency == null || targetCurrency == null) {
+                    ctx.status(400).result("Both 'from' and 'to' query parameters are required");
+                    return;
+                }
+                
+                Money sourceMoney = new Money(amount, sourceCurrency);
+                Money convertedMoney = exchangeService.convert(sourceMoney, targetCurrency);
+                
+                ctx.result(amount.floatValue() + " " + sourceCurrency + " = " + convertedMoney.getAmount().floatValue() + " " + targetCurrency);
+            } catch (Exception e) {
+                ctx.status(400).result("Failed to get exchange rate: " + e.getMessage());
             }
         });
         
@@ -176,6 +254,7 @@ public class App
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getUsername());
+            pstmt.setString(5, user.getPassword()); // Added password
             
             pstmt.executeUpdate();
         } catch (java.sql.SQLException e) {
@@ -209,6 +288,7 @@ public class App
 
             try {
                 stmt.executeUpdate("DELETE FROM transactions");
+                stmt.executeUpdate("DELETE FROM accounts");
                 stmt.executeUpdate("DELETE FROM users");
                 conn.commit();
             } catch (java.sql.SQLException e) {
@@ -231,8 +311,8 @@ public class App
     }
     
     static class TransferRequest {
-        public String fromId;
-        public String toId;
+        public String fromUser;
+        public String toUser;
         public BigDecimal amount;
         public String currency;
     }
@@ -245,37 +325,36 @@ public class App
     }
 
     static class CreateAccountRequest {
-        public String id;
-        public String userId; // Added userId field
+        public String username;
         public BigDecimal initialBalance;
         public String currency;
     }
     
-    static class AccountResponse {
-        public String owner;
-        public String balance;
-        
-        public AccountResponse(String owner, String balance) {
-            this.owner = owner;
-            this.balance = balance;
-        }
-    }
-
+   
     static class ConvertRequest {
+        public String username;
         public BigDecimal amount;
         public String sourceCurrency;
         public String targetCurrency;
     }
 
-    static class ConvertResponse {
-        public String originalAmount;
-        public String convertedAmount;
+    static class ExchangeRequest {
+        public BigDecimal amount;
+        public String sourceCurrency;
         public String targetCurrency;
-
-        public ConvertResponse(String originalAmount, String convertedAmount, String targetCurrency) {
-            this.originalAmount = originalAmount;
-            this.convertedAmount = convertedAmount;
-            this.targetCurrency = targetCurrency;
+    }
+    
+    static class AccountWithTransactionsResponse {
+        public String id;
+        public String userId;
+        public String balance;
+        public List<DatabaseConfig.TransactionRecord> transactions;
+        
+        public AccountWithTransactionsResponse(Account account, List<DatabaseConfig.TransactionRecord> transactions) {
+            this.id = account.getId();
+            this.userId = account.getUserId();
+            this.balance = account.getBalance().getFormattedAmount();
+            this.transactions = transactions;
         }
     }
 }

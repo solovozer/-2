@@ -1,14 +1,15 @@
 package com.example;
 
+
 public class Account {
-    private final String id;
-    private final String owner;
+    private String id;
+    private String userId;
     private Money balance;
 
-    public Account(String id, String owner, Money initialBalance) {
+    public Account(String id, String userId, Money balance) {
         this.id = id;
-        this.owner = owner;
-        this.balance = initialBalance;
+        this.userId = userId;
+        this.balance = balance;
     }
 
     public String getCurrency() {
@@ -28,5 +29,5 @@ public class Account {
 
     public Money getBalance() { return balance; }
     public String getId() { return id; }
-    public String getOwner() { return owner; }
+    public String getUserId() { return userId; }
 }

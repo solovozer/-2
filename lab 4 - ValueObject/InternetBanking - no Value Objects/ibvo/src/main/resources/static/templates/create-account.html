@@ -13,14 +13,11 @@
   <main>
     <div class="card">
       <form id="create-account-form">
-        <label for="id">Account Name</label>
-        <input id="id" name="id" required />
+        <label for="username">Username</label>
+        <input id="username" name="username" required placeholder="Enter your username" />
 
-        <label for="name">Owner Name</label>
-        <input id="name" name="name" required />
-
-        <label for="amount">Initial Balance</label>
-        <input id="amount" name="amount" type="number" min="0" step="0.01" required />
+        <label for="initialBalance">Initial Balance</label>
+        <input id="initialBalance" name="initialBalance" type="number" min="0" step="0.01" required />
 
         <label for="currency">Currency</label>
         <select id="currency" name="currency" required>
@@ -33,12 +30,12 @@
     </div>
     <div class="page-links">
       <a href="/">Back to Home</a>
+      <a href="/create-user">Create User</a>
     </div>
   </main>
   <footer>Simple Bank demo</footer>
 
   <script>
-    // Fetch currencies and populate select
     async function loadCurrencies() {
       try {
         const response = await fetch('/currencies');
@@ -60,28 +57,27 @@
     const form = document.getElementById('create-account-form');
     const message = document.getElementById('message');
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      message.style.display = 'none';
+    form.addEventListener('submit', async (event) => { 
+          event.preventDefault();
+          message.style.display = 'none';
 
-      const body = {
-        id: form.id.value.trim(),
-        name: form.name.value.trim(),
-        initialBalance: Math.round(Number(form.amount.value) * 100), // Convert dollars to cents
-        currency: form.currency.value,
-      };
+          const body = {
+            username: form.username.value.trim(),
+            initialBalance: parseFloat(form.initialBalance.value),
+            currency: form.currency.value,
+          };
 
-      const response = await fetch('/accounts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
+          const response = await fetch('/accounts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          });
+
+          const result = await response.text();
+          message.textContent = result;
+          message.className = 'result ' + (response.ok ? 'success' : 'error');
+          message.style.display = 'block';
       });
-
-      const text = await response.text();
-      message.textContent = text;
-      message.className = 'result ' + (response.ok ? 'success' : 'error');
-      message.style.display = 'block';
-    });
   </script>
 </body>
 </html>
