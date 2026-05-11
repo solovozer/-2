@@ -5,14 +5,13 @@ import java.math.RoundingMode;
 
 import com.example.Money;
 import com.example.Account;
-import com.example.DatabaseConfig;
-import com.example.Repository.AccountRepository;
+import com.example.Repository;
 
 //SUPPORTED_CURRENCIES = Arrays.asList("AUD", "CAD", "CNY", "EUR", "JPY", "RUB", "USD", "VND")
 public class ExchangeService {
-    private final AccountRepository AR;
+    private final Repository AR;
 
-    public ExchangeService(AccountRepository repo) {
+    public ExchangeService(Repository repo) {
         this.AR = repo;
     }
 
@@ -67,7 +66,7 @@ public class ExchangeService {
         AR.updateBalance(to);
         
         // log the currency conversion for this user
-        DatabaseConfig db = new DatabaseConfig();
-        db.saveConversion(userId, originalAmount, originalAmount.getCurrency(), targetCurrency);
+        
+        AR.logConversion(userId, originalAmount, targetCurrency);
     }
 }

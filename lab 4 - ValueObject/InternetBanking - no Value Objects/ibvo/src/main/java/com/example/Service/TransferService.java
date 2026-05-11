@@ -1,8 +1,8 @@
 package com.example.Service;
 
 import com.example.Account;
+import com.example.AccountRepository;
 import com.example.Money;
-import com.example.Repository.AccountRepository;
 
 public class TransferService {
     private final AccountRepository AR;

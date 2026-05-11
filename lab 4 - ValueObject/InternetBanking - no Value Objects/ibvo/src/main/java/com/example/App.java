@@ -2,8 +2,6 @@ package com.example;
 
 import io.javalin.Javalin;
 
-import com.example.Repository.AccountRepository;
-import com.example.Repository.UserRepository;
 import com.example.Service.TransferService;
 import com.example.Service.ExchangeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +19,6 @@ public class App
         DatabaseConfig.initialize();
         
         AccountRepository accountRepo = new AccountRepository();
-        UserRepository userRepo = new UserRepository();
         TransferService transferService = new TransferService(accountRepo);
         ExchangeService exchangeService = new ExchangeService(accountRepo);
 
@@ -51,7 +48,7 @@ public class App
             try {
                 CreateUserRequest request = objectMapper.readValue(ctx.body(), CreateUserRequest.class);
                 
-                User existingUser = userRepo.findByUsername(request.username);
+                User existingUser = accountRepo.findUserByUsername(request.username);
                 if (existingUser != null) {
                     ctx.status(409).result("Username '" + request.username + "' is taken");
                     return;
@@ -69,7 +66,7 @@ public class App
         app.post("/accounts", ctx -> {
             try {
                 CreateAccountRequest request = objectMapper.readValue(ctx.body(), CreateAccountRequest.class);
-                User user = userRepo.findByUsername(request.username);
+                User user = accountRepo.findUserByUsername(request.username);
                 
                 if (user == null) {
                     ctx.status(404).result("User with username '" + request.username + "' not found");
@@ -111,7 +108,7 @@ public class App
 
         app.get("/users-by-username/{username}", ctx -> {
             String username = ctx.pathParam("username");
-            User user = userRepo.findByUsername(username);
+            User user = accountRepo.findUserByUsername(username);
             if (user != null) {
                 // Load accounts for this user
                 List<Account> accounts = accountRepo.getAllAccountsFromUser(user.getId()); // Changed method name
@@ -142,8 +139,8 @@ public class App
             try {
                 TransferRequest request = objectMapper.readValue(ctx.body(), TransferRequest.class);
                 
-                User fromUser = userRepo.findByUsername(request.fromUser);
-                User toUser = userRepo.findByUsername(request.toUser);
+                User fromUser = accountRepo.findUserByUsername(request.fromUser);
+                User toUser = accountRepo.findUserByUsername(request.toUser);
                 
                 if (fromUser == null) {
                     ctx.status(404).result("Sender not found");
@@ -184,7 +181,7 @@ public class App
         app.post("/convert", ctx -> {
             try {
                 ConvertRequest request = objectMapper.readValue(ctx.body(), ConvertRequest.class);
-                User user = userRepo.findByUsername(request.username);
+                User user = accountRepo.findUserByUsername(request.username);
                 
                 if (user == null) {
                     ctx.status(404).result("User not found");
@@ -201,7 +198,7 @@ public class App
 
         app.get("/conversion-history/{username}", ctx -> {
             String username = ctx.pathParam("username");
-            User user = userRepo.findByUsername(username);
+            User user = accountRepo.findUserByUsername(username);
             if (user == null) {
                 ctx.status(404).result("User not found");
                 return;
