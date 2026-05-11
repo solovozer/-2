@@ -33,11 +33,12 @@ public class Money {
 
 ```java
 public class Account {
-    private final String id;
-    private final String owner;
+    private String id;
+    private String userId;
     private Money balance;
 
-    public Account(String id, String owner, Money initialBalance) {} //...
+
+    public Account(String id, String userId, Money balance) {} //...
 }
 ```
 
@@ -74,7 +75,7 @@ public final class Money {
 ```
 
 Ниже представлена диаграмма классов применения Value Object
-![Рисунок 2: Диаграмма классов второго применения](./Assets/classdiagram3.png)
+![Рисунок 2: Диаграмма классов второго применения](./Assets/class%20d%205.jpg)
 
 Этот подход обеспечивает инкапсуляцию в рамках ООП. Кроме того, сборщик мусора Java эффективно обрабатывает устаревшие объекты.
 
