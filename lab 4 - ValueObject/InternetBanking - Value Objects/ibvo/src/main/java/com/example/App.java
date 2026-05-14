@@ -166,11 +166,7 @@ public class App
                 }
 
                 Money amount = new Money(request.amount, request.currency);
-                try {
-                    transferService.transfer(fromAccount.getId(), toAccount.getId(), amount);
-                } catch (IllegalArgumentException e) {
-                    ctx.status(400).result("Not enough money in the sender's account. Please convert currency or reduce the transfer amount.");
-                }
+                transferService.transfer(fromAccount.getId(), toAccount.getId(), amount);
                 ctx.result("Transfer successful");
             } catch (Exception e) {
                 ctx.status(400).result("Transfer failed: " + e.getMessage());

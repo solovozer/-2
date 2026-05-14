@@ -30,8 +30,8 @@ public class TransferService {
 
         try {
             from.withdraw(amount);
-        } catch (IllegalArgumentException e) {
-            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
         to.deposit(amount);
 
