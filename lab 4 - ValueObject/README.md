@@ -38,7 +38,7 @@ public class Account {
     private Money balance;
 
 
-    public Account(String id, String userId, Money balance) {} //...
+    public Account(String id, String userId, BigDecimal balance, String currency) {} //...
 }
 ```
 
