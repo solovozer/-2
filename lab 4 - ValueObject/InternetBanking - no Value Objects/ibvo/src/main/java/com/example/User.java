@@ -1,5 +1,6 @@
 package com.example;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,8 +74,8 @@ public class User {
         this.accounts = accounts;
     }
 
-    public void createAccount(Money initialBalance) {
-        Account account = new Account(java.util.UUID.randomUUID().toString(), this.id, initialBalance);
+    public void createAccount(BigDecimal balance, String currency) {
+        Account account = new Account(java.util.UUID.randomUUID().toString(), this.id, balance, currency);
         this.accounts.add(account);
     }
 }

@@ -1,15 +1,16 @@
 package com.example;
 
+import java.math.BigDecimal;
 
 public class Account {
     private String id;
     private String userId;
     private Money balance;
 
-    public Account(String id, String userId, Money balance) {
+    public Account(String id, String userId, BigDecimal balance, String currency) {
         this.id = id;
         this.userId = userId;
-        this.balance = balance;
+        this.balance = new Money(balance, currency);
     }
 
     public String getCurrency() {

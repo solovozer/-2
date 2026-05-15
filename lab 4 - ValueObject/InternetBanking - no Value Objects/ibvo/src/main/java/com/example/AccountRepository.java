@@ -40,7 +40,7 @@ public class AccountRepository {
                 BigDecimal amount = rs.getBigDecimal("balance_amount");
                 String currency = rs.getString("balance_currency");
                 String userId = rs.getString("user_id");
-                return new Account(id, userId, new Money(amount, currency));
+                return new Account(id, userId, amount, currency);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -63,8 +63,7 @@ public class AccountRepository {
                     String currency = rs.getString("balance_currency");
                     
                     // Map to Domain Object
-                    Money balance = new Money(amount, currency);
-                    accounts.add(new Account(id, userId, balance));
+                    accounts.add(new Account(id, userId, amount, currency));
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
