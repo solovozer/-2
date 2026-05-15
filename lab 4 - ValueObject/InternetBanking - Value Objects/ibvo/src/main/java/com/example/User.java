@@ -76,8 +76,8 @@ public class User {
         }
     }
 
-    public void createAccount(BigDecimal balance, String currency) {
-        Account account = new Account(java.util.UUID.randomUUID().toString(), this.id, balance, currency);
+    public void createAccount(Money money) {
+        Account account = new Account(java.util.UUID.randomUUID().toString(), this.id, money);
         this.accounts.add(account);
     }
 }

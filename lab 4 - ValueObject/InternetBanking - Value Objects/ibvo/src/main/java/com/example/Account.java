@@ -7,10 +7,10 @@ public class Account {
     private final String userId;
     private Money balance;
 
-    public Account(String id, String userId, BigDecimal balance, String currency) {
+    public Account(String id, String userId, Money initialBalance) {
         this.id = id;
         this.userId = userId;
-        this.balance = new Money(balance, currency);
+        this.balance = initialBalance;
     }
 
     public String getCurrency() {
