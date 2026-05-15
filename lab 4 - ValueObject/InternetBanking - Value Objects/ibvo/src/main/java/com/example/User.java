@@ -10,7 +10,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private List<Account> accounts;
+    private final List<Account> accounts;
 
     public User(String name, String email, String username, String password) {
         this.id = java.util.UUID.randomUUID().toString();
@@ -71,7 +71,9 @@ public class User {
     }
 
     public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+        for (Account account : accounts) {
+            this.accounts.add(account);
+        }
     }
 
     public void createAccount(BigDecimal balance, String currency) {

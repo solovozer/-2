@@ -2,8 +2,8 @@ package com.example;
 
 import java.math.BigDecimal;
 public class Account {
-    private String id;
-    private String userId;
+    private final String id;
+    private final String userId;
     private Money balance;
 
     public Account(String id, String userId, BigDecimal balance, String currency) {

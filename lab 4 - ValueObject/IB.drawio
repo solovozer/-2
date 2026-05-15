@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
   <diagram name="Page-1" id="vLG7KxnQ1ONnHCqikwzC">
-    <mxGraphModel dx="1491" dy="943" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
+    <mxGraphModel dx="1044" dy="660" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -34,10 +34,10 @@
         <mxCell id="fBi7UFLbkQ2N1Kv2fhTB-5" value="Account" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="57" y="366" width="204" height="138" as="geometry" />
         </mxCell>
-        <mxCell id="fBi7UFLbkQ2N1Kv2fhTB-6" value="- id : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontStyle=0" parent="fBi7UFLbkQ2N1Kv2fhTB-5" vertex="1">
+        <mxCell id="fBi7UFLbkQ2N1Kv2fhTB-6" value="- id : String&amp;nbsp;&amp;nbsp;{readOnly}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontStyle=0" parent="fBi7UFLbkQ2N1Kv2fhTB-5" vertex="1">
           <mxGeometry y="26" width="204" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="QFMbaB3X--e5tnugwEc0-15" value="- userId : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontStyle=0" parent="fBi7UFLbkQ2N1Kv2fhTB-5" vertex="1">
+        <mxCell id="QFMbaB3X--e5tnugwEc0-15" value="- userId : String&amp;nbsp;&amp;nbsp;{readOnly}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontStyle=0" parent="fBi7UFLbkQ2N1Kv2fhTB-5" vertex="1">
           <mxGeometry y="52" width="204" height="26" as="geometry" />
         </mxCell>
         <mxCell id="fBi7UFLbkQ2N1Kv2fhTB-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="fBi7UFLbkQ2N1Kv2fhTB-5" vertex="1">
@@ -150,8 +150,8 @@
         <mxCell id="QFMbaB3X--e5tnugwEc0-43" value="+ createAccount(initialBalance : Money)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="QFMbaB3X--e5tnugwEc0-2" vertex="1">
           <mxGeometry y="164" width="224" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="QFMbaB3X--e5tnugwEc0-11" value="- accounts" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=20;startFill=0;align=left;verticalAlign=bottom;rounded=0;entryX=0.502;entryY=0.992;entryDx=0;entryDy=0;entryPerimeter=0;targetPerimeterSpacing=6;sourcePerimeterSpacing=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="QFMbaB3X--e5tnugwEc0-2" target="fBi7UFLbkQ2N1Kv2fhTB-46" edge="1">
-          <mxGeometry x="0.2023" y="-8" relative="1" as="geometry">
+        <mxCell id="QFMbaB3X--e5tnugwEc0-11" value="- accounts&amp;nbsp;&amp;nbsp;{readOnly}" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=20;startFill=0;align=left;verticalAlign=bottom;rounded=0;entryX=0.502;entryY=0.992;entryDx=0;entryDy=0;entryPerimeter=0;targetPerimeterSpacing=6;sourcePerimeterSpacing=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="QFMbaB3X--e5tnugwEc0-2" target="fBi7UFLbkQ2N1Kv2fhTB-46" edge="1">
+          <mxGeometry x="-0.0127" y="-1" relative="1" as="geometry">
             <mxPoint x="159" y="582" as="sourcePoint" />
             <mxPoint x="158.02999999999997" y="503.9980000000001" as="targetPoint" />
             <mxPoint as="offset" />
