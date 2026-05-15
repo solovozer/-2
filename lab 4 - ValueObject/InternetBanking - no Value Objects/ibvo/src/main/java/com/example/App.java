@@ -18,7 +18,7 @@ public class App
     {
         DatabaseConfig.initialize();
         
-        AccountRepository accountRepo = new AccountRepository();
+        Repository accountRepo = new Repository();
         TransferService transferService = new TransferService(accountRepo);
         ExchangeService exchangeService = new ExchangeService(accountRepo);
 
@@ -84,7 +84,7 @@ public class App
                     }
                 }
                 String accountId = java.util.UUID.randomUUID().toString();
-                Account account = new Account(accountId, user.getId(), request.initialBalance, request.currency );
+                Account account = new Account(accountId, user.getId(), new Money(request.initialBalance, request.currency));
                 saveAccount(account);
                 ctx.result(request.currency + " account created successfully");
             } catch (Exception e) {

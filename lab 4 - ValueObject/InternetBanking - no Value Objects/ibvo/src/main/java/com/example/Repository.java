@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.List;
 
-public class AccountRepository {
+public class Repository {
     public User findUserByUsername(String username) {
         String sql = "SELECT id, name, email, username, password FROM users WHERE username = ?";
         
@@ -40,7 +40,7 @@ public class AccountRepository {
                 BigDecimal amount = rs.getBigDecimal("balance_amount");
                 String currency = rs.getString("balance_currency");
                 String userId = rs.getString("user_id");
-                return new Account(id, userId, amount, currency);
+                return new Account(id, userId, new Money(amount, currency));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -63,7 +63,7 @@ public class AccountRepository {
                     String currency = rs.getString("balance_currency");
                     
                     // Map to Domain Object
-                    accounts.add(new Account(id, userId, amount, currency));
+                    accounts.add(new Account(id, userId, new Money(amount, currency)));
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());

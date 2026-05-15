@@ -5,14 +5,14 @@ import java.math.RoundingMode;
 
 import com.example.Money;
 import com.example.Account;
-import com.example.AccountRepository;
+import com.example.Repository;
 import com.example.DatabaseConfig;
 
 //SUPPORTED_CURRENCIES = Arrays.asList("AUD", "CAD", "CNY", "EUR", "JPY", "RUB", "USD", "VND")
 public class ExchangeService {
-    private final AccountRepository AR;
+    private final Repository AR;
 
-    public ExchangeService(AccountRepository repo) {
+    public ExchangeService(Repository repo) {
         this.AR = repo;
     }
 
